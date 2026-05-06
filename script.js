@@ -1,10 +1,11 @@
-import { animate, reverseEasing, anticipate, mirrorEasing } from "motion";
+import { animate } from "motion";
 
 const seal = document.querySelector(".seal");
 const sealArt = document.querySelector(".seal-art");
 const envelope = document.querySelector(".envelope");
 const flap = document.querySelector(".flap");
 const letter = document.querySelector(".letter");
+const site = document.querySelector("#site");
 const letterMask = document.querySelector(".letter-mask");
 
 const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
@@ -89,7 +90,17 @@ async function openEnvelope() {
 
   seal.disabled = true;
 
-  animate(sealArt, { opacity: 0 }, { duration: 0.24, ease: "easeOut" });
+  animate(
+    sealArt,
+    { opacity: 0 },
+    {
+      duration: 0.24,
+      ease: "easeOut",
+      onComplete() {
+        seal.remove();
+      },
+    },
+  );
 
   await animate(
     flap,
@@ -134,6 +145,18 @@ async function openEnvelope() {
   });
 
   await Promise.all([letterYAnimation.finished, envelopeYAnimation.finished]);
+
+  site.classList.remove("hidden");
+  document.body.classList.remove("overflow-hidden");
+
+  animate(window.scrollY, site.offsetTop, {
+    duration: 2.4,
+    delay: 1,
+    ease: "easeOut",
+    onUpdate(value) {
+      scrollTo(0, value);
+    },
+  });
 }
 
 envelope.addEventListener("pointermove", tiltLetter);

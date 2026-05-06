@@ -3,6 +3,11 @@
   src: url("assets/fonts/great-vibes.ttf") format("truetype");
 }
 
+.script {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
