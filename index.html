@@ -3,189 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>May 29, 2027 | Berkeley Botanical Gardens</title>
-    <meta
-      name="description"
-      content="A handcrafted wedding website shell for a May 29, 2027 celebration at Berkeley Botanical Gardens."
-    />
+    <title>Allie & Caio</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="locked">
-    <main id="top">
-      <section class="letter-screen" aria-labelledby="hero-title">
-        <div class="paper-wash" aria-hidden="true"></div>
+  <body class="m-0 overflow-hidden bg-[#f7ead8] text-[#3e213a]">
+    <main
+      class="grid min-h-screen place-items-center overflow-hidden [perspective:1000px]"
+    >
+      <div class="envelope relative w-[700px] drop-shadow-2xl">
+        <img src="new-assets/envelope_back.png" />
 
-        <div class="opening-scene">
-          <div class="envelope-device" aria-live="polite">
-            <img
-              class="envelope-layer envelope-back"
-              src="new-assets/envelope_back.png"
-              alt=""
-              width="1500"
-              height="2000"
-              aria-hidden="true"
-            />
-
-            <div class="letter-slot">
-              <div class="letter-card">
-                <img
-                  class="letter-art"
-                  src="new-assets/letter.png"
-                  alt=""
-                  width="1500"
-                  height="2000"
-                />
-
-                <h1 id="hero-title">May 29, 2027</h1>
-              </div>
-            </div>
-
-            <img
-              class="envelope-layer envelope-front"
-              src="new-assets/envelope_front.png"
-              alt=""
-              width="1500"
-              height="2000"
-              aria-hidden="true"
-            />
-            <img
-              class="envelope-layer envelope-flap-lid"
-              src="new-assets/envelope_flap.png"
-              alt=""
-              width="1500"
-              height="2000"
-              aria-hidden="true"
-            />
-
-            <button
-              class="wax-seal"
-              type="button"
-              data-open-letter
-              aria-label="Break the seal and open the letter"
-            >
-              <img
-                src="new-assets/envelope_seal.png"
-                alt=""
-                width="1500"
-                height="2000"
-                aria-hidden="true"
-              />
-            </button>
+        <div
+          class="letter-mask absolute inset-x-0 bottom-8 z-10 overflow-hidden px-12"
+        >
+          <div class="letter relative translate-y-3/4 mb-20">
+            <img class="block w-full" src="new-assets/letter.png" />
+            <h3 class="absolute inset-x-0 top-16 z-20 text-center">
+              May 29th, 2027
+            </h3>
           </div>
-
-          <button class="continue-cue" type="button" data-continue>
-            <span>Continue</span>
-            <svg viewBox="0 0 28 28" aria-hidden="true">
-              <path d="M14 4 V22 M6 14 L14 22 L22 14" />
-            </svg>
-          </button>
-        </div>
-      </section>
-
-      <section class="welcome" id="welcome" aria-labelledby="welcome-title">
-        <div class="deckle deckle-top" aria-hidden="true"></div>
-
-        <h2 id="welcome-title">Welcome</h2>
-        <div class="welcome-rule" aria-hidden="true">
-          <span></span>
-          <svg viewBox="0 0 58 22">
-            <path
-              d="M29 11 C23 1, 12 2, 12 10 C12 18, 24 18, 29 11 C34 18, 46 18, 46 10 C46 2, 35 1, 29 11Z"
-            />
-            <path d="M4 11 H18 M40 11 H54" />
-          </svg>
-          <span></span>
         </div>
 
-        <nav class="section-nav" aria-label="Wedding sections">
-          <a href="#day" class="nav-tile">
-            <span class="botanical botanical-cosmos" aria-hidden="true"></span>
-            <strong>Our Day</strong>
-            <svg viewBox="0 0 28 28" aria-hidden="true">
-              <path d="M14 4 V22 M7 15 L14 22 L21 15" />
-            </svg>
-          </a>
-          <a href="#garden" class="nav-tile">
-            <span
-              class="botanical botanical-eucalyptus"
-              aria-hidden="true"
-            ></span>
-            <strong>The Garden</strong>
-            <svg viewBox="0 0 28 28" aria-hidden="true">
-              <path d="M14 4 V22 M7 15 L14 22 L21 15" />
-            </svg>
-          </a>
-          <a href="#rsvp" class="nav-tile">
-            <span
-              class="botanical botanical-envelope"
-              aria-hidden="true"
-            ></span>
-            <strong>RSVP</strong>
-            <svg viewBox="0 0 28 28" aria-hidden="true">
-              <path d="M14 4 V22 M7 15 L14 22 L21 15" />
-            </svg>
-          </a>
-          <a href="#details" class="nav-tile">
-            <span class="botanical botanical-fern" aria-hidden="true"></span>
-            <strong>Details</strong>
-            <svg viewBox="0 0 28 28" aria-hidden="true">
-              <path d="M14 4 V22 M7 15 L14 22 L21 15" />
-            </svg>
-          </a>
-        </nav>
-      </section>
-
-      <section
-        class="garden-band"
-        aria-label="Berkeley Botanical Gardens illustration"
-      >
         <img
-          src="assets/berkeley-garden-watercolor.png"
-          alt=""
-          width="1536"
-          height="1024"
+          class="absolute inset-0 z-20"
+          src="new-assets/envelope_front.png"
         />
-        <div class="plum-ribbon" aria-hidden="true">
-          <svg viewBox="0 0 80 28">
-            <path
-              d="M40 4 C35 12, 27 18, 14 19 C27 23, 34 21, 40 14 C46 21, 53 23, 66 19 C53 18, 45 12, 40 4Z"
-            />
-            <path d="M40 7 V24" />
-          </svg>
-        </div>
-      </section>
+        <img
+          class="flap absolute inset-0 z-30 origin-top"
+          src="new-assets/envelope_flap.png"
+        />
 
-      <section class="details-shell" aria-label="Wedding details shell">
-        <article id="day">
-          <span>01</span>
-          <h3>Our Day</h3>
-          <p>
-            Ceremony and reception timing will live here once the plan settles.
-          </p>
-        </article>
-        <article id="garden">
-          <span>02</span>
-          <h3>The Garden</h3>
-          <p>Venue notes, entrance details, parking, and comfort guidance.</p>
-        </article>
-        <article id="rsvp">
-          <span>03</span>
-          <h3>RSVP</h3>
-          <p>
-            A simple reply flow can become this section when guest details are
-            ready.
-          </p>
-        </article>
-        <article id="details">
-          <span>04</span>
-          <h3>Details</h3>
-          <p>
-            Travel, registry, schedule updates, and accessibility information.
-          </p>
-        </article>
-      </section>
+        <img
+          class="seal-art pointer-events-none absolute inset-0 z-40"
+          src="new-assets/envelope_seal.png"
+        />
+
+        <button
+          class="seal aspect-square absolute left-1/2 top-1/2 z-50 w-1/4 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full border-0 bg-transparent p-0"
+          type="button"
+          aria-label="Open invitation"
+        ></button>
+      </div>
     </main>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

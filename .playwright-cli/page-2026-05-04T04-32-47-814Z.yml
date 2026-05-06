@@ -1,0 +1,13 @@
+- main [ref=e2]:
+  - region "May 29, 2027" [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e7]
+        - heading "May 29, 2027" [level=1] [ref=e10]
+        - img [ref=e11]
+        - img [ref=e12]
+        - button "Break the seal and open the letter" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+      - button "Continue":
+        - generic: Continue
+        - img

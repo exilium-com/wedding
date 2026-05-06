@@ -1,30 +1,150 @@
-const body = document.body;
-const openControls = document.querySelectorAll("[data-open-letter]");
-const continueControl = document.querySelector("[data-continue]");
-const welcome = document.querySelector("#welcome");
+import { animate, reverseEasing, anticipate, mirrorEasing } from "motion";
 
-function openLetter() {
-  if (body.classList.contains("opened")) return;
+const seal = document.querySelector(".seal");
+const sealArt = document.querySelector(".seal-art");
+const envelope = document.querySelector(".envelope");
+const flap = document.querySelector(".flap");
+const letter = document.querySelector(".letter");
+const letterMask = document.querySelector(".letter-mask");
 
-  body.classList.add("opened");
+const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
+const sealHoverGlow = "drop-shadow(0 0 24px rgba(255, 178, 214, 0.95))";
+let opened = false;
+let sealAnimation;
+let letterYAnimation;
+let envelopeYAnimation;
+let letterTiltAnimations = [];
+const letterTransform = { y: 75, rotateX: 0, rotateY: 0 };
+const envelopeTransform = { baseY: 0, bobY: 0 };
 
-  window.setTimeout(() => {
-    body.classList.add("settled");
-  }, 2850);
+letter.style.transformOrigin = "center";
+letter.style.transformStyle = "preserve-3d";
+sealArt.style.transformOrigin = "center";
+sealArt.style.filter = sealGlow;
+
+function setLetterTransform() {
+  letter.style.transform = `perspective(900px) translateY(${letterTransform.y}%) rotateX(${letterTransform.rotateX}deg) rotateY(${letterTransform.rotateY}deg)`;
 }
 
-openControls.forEach((control) => {
-  control.addEventListener("click", openLetter);
+function setEnvelopeTransform() {
+  envelope.style.transform = `translateY(${envelopeTransform.baseY + envelopeTransform.bobY}px)`;
+}
+
+setLetterTransform();
+setEnvelopeTransform();
+
+animate(0, [0, -8, 0], {
+  duration: 3,
+  repeat: Infinity,
+  ease: "easeInOut",
+  onUpdate(value) {
+    envelopeTransform.bobY = value;
+    setEnvelopeTransform();
+  },
 });
 
-continueControl.addEventListener("click", () => {
-  body.classList.remove("locked");
-  requestAnimationFrame(() => {
-    welcome.scrollIntoView({ behavior: "smooth", block: "start" });
+function animateSeal(scale, filter, duration) {
+  if (opened) return;
+
+  sealAnimation?.stop();
+  sealAnimation = animate(
+    sealArt,
+    { scale, filter },
+    { duration, ease: "easeOut" },
+  );
+}
+
+function animateLetterTilt(rotateX, rotateY, duration) {
+  if (!opened) return;
+  letterTiltAnimations.forEach((animation) => animation.stop());
+  letterTiltAnimations = [
+    animate(letterTransform.rotateX, rotateX, {
+      duration,
+      ease: "easeOut",
+      onUpdate(value) {
+        letterTransform.rotateX = value;
+        setLetterTransform();
+      },
+    }),
+    animate(letterTransform.rotateY, rotateY, {
+      duration,
+      ease: "easeOut",
+      onUpdate(value) {
+        letterTransform.rotateY = value;
+        setLetterTransform();
+      },
+    }),
+  ];
+}
+
+function tiltLetter(event) {
+  const rect = envelope.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+  animateLetterTilt(y * 10, -x * 10, 0.25);
+}
+
+async function openEnvelope() {
+  if (opened) return;
+
+  seal.disabled = true;
+
+  animate(sealArt, { opacity: 0 }, { duration: 0.24, ease: "easeOut" });
+
+  await animate(
+    flap,
+    { transform: ["rotateX(0deg)", "rotateX(90deg)"] },
+    { duration: 0.52, delay: 0.12, ease: "easeIn" },
+  ).finished;
+
+  flap.style.zIndex = "0";
+
+  await animate(
+    flap,
+    { transform: ["rotateX(90deg)", "rotateX(180deg)"] },
+    { duration: 0.68, ease: [0.2, 0.82, 0.18, 1] },
+  ).finished;
+
+  letterYAnimation?.stop();
+  envelopeYAnimation?.stop();
+  const letterStartY = letterTransform.y;
+  const envelopeDrop = (letter.offsetHeight * letterStartY) / 300;
+
+  letterYAnimation = animate(letterStartY, 0, {
+    duration: 1.5,
+    ease: "easeOut",
+    onUpdate(value) {
+      letterTransform.y = value;
+      setLetterTransform();
+    },
+    onComplete() {
+      opened = true;
+      letterMask.classList.remove("overflow-hidden");
+    },
   });
-});
 
-if (new URLSearchParams(window.location.search).has("open")) {
-  body.classList.add("opened");
-  body.classList.add("settled");
+  envelopeYAnimation = animate(envelopeTransform.baseY, envelopeDrop, {
+    duration: 3,
+    delay: 0.12,
+    ease: "backOut",
+    onUpdate(value) {
+      envelopeTransform.baseY = value;
+      setEnvelopeTransform();
+    },
+  });
+
+  await Promise.all([letterYAnimation.finished, envelopeYAnimation.finished]);
 }
+
+envelope.addEventListener("pointermove", tiltLetter);
+envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
+seal.addEventListener("pointerenter", () =>
+  animateSeal(1.1, sealHoverGlow, 0.2),
+);
+seal.addEventListener("pointerleave", () => animateSeal(1, sealGlow, 0.2));
+seal.addEventListener("pointerdown", () =>
+  animateSeal(0.9, sealHoverGlow, 0.1),
+);
+seal.addEventListener("pointerup", () => animateSeal(1.1, sealHoverGlow, 0.2));
+seal.addEventListener("pointercancel", () => animateSeal(1, sealGlow, 0.2));
+seal.addEventListener("click", openEnvelope);
