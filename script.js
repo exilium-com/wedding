@@ -8,6 +8,7 @@ const letter = document.querySelector(".letter");
 const site = document.querySelector("#site");
 const letterMask = document.querySelector(".letter-mask");
 const resetIntro = document.querySelector(".reset-intro");
+const siteRedwood = document.querySelector(".redwood-splash");
 
 const introSeenKey = "weddingIntroSeen";
 const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
@@ -34,6 +35,14 @@ function revealSite() {
   site.classList.remove("hidden");
   document.body.classList.remove("overflow-hidden");
   resetIntro.classList.remove("hidden");
+}
+
+function revealRedwood() {
+  return animate(
+    siteRedwood,
+    { opacity: 0.7 },
+    { duration: 2, ease: "easeOut" },
+  );
 }
 
 function setLetterTransform() {
@@ -163,6 +172,7 @@ async function openEnvelope() {
 
   markIntroSeen();
   revealSite();
+  revealRedwood();
 
   animate(window.scrollY, site.offsetTop, {
     duration: 2.4,
@@ -188,6 +198,7 @@ function completeIntroState() {
   flap.style.transform = "rotateX(180deg)";
   seal.remove();
   revealSite();
+  siteRedwood.style.opacity = "0.7";
   requestAnimationFrame(() => scrollTo(0, site.offsetTop));
 }
 

@@ -53,11 +53,11 @@
 - This WSL shell may not have Node on PATH by default. Check Codex history/env and use `PATH="$NVM_BIN:$PATH"` when `NVM_BIN` points at the Linux Node install.
 - Bundled Windows Python may have Pillow when Linux Python does not. It can process WSL project files through `\\wsl.localhost\...` paths.
 - Running helper scripts directly from the Windows-side `.codex` path may hit permission issues; copy a helper into the workspace temporarily only if needed, then remove it.
-- Use local build checks when available, but do not derail visual iteration into environment spelunking if the user is still giving design feedback.
+- Do not run builds unless the user explicitly reverses this instruction. Prefer code inspection for routine checks.
 
 ## Verification Notes
 
 - Use rendered screenshots for visual work; static code inspection is not enough for pixel-sensitive layouts or animation.
 - Check key visual states on desktop and mobile.
 - Look for alignment drift, unintended section bleed, clipping, viewport whitespace, unreadable text, and mismatches from the approved concept.
-- Build checks are useful after structural changes, but visual animation work needs screenshot inspection.
+- Do not run build checks by default; the user has explicitly asked not to run builds.

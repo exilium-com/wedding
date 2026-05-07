@@ -12,14 +12,18 @@ body {
   font-weight: 400;
 }
 
+.seal {
+  appearance: none;
+  border: none;
+}
+
 .site-page {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   background:
     linear-gradient(rgba(255, 248, 236, 0.6), rgba(255, 248, 236, 0.6)),
-    url("assets/generated/parchment-pressed-flower-sides.png") center top /
-      100% auto repeat-y,
+    url("assets/generated/parchment-pressed-flower-sides.png") center top / 100%
+      auto repeat-y,
     #f9eedc;
 }
 
@@ -39,7 +43,7 @@ body {
 }
 
 .redwood-splash {
-  mask-image: radial-gradient(ellipse, #000 45%, transparent 75%);
+  mask-image: radial-gradient(ellipse at bottom, #000 45%, transparent 65%);
 }
 
 .site-section::before {
