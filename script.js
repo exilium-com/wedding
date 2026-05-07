@@ -7,7 +7,9 @@ const flap = document.querySelector(".flap");
 const letter = document.querySelector(".letter");
 const site = document.querySelector("#site");
 const letterMask = document.querySelector(".letter-mask");
+const resetIntro = document.querySelector(".reset-intro");
 
+const introSeenKey = "weddingIntroSeen";
 const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
 const sealHoverGlow = "drop-shadow(0 0 24px rgba(255, 178, 214, 0.95))";
 let opened = false;
@@ -15,6 +17,7 @@ let sealAnimation;
 let letterYAnimation;
 let envelopeYAnimation;
 let letterTiltAnimations = [];
+const introSeen = localStorage.getItem(introSeenKey) === "true";
 const letterTransform = { y: 75, rotateX: 0, rotateY: 0 };
 const envelopeTransform = { baseY: 0, bobY: 0 };
 
@@ -22,6 +25,16 @@ letter.style.transformOrigin = "center";
 letter.style.transformStyle = "preserve-3d";
 sealArt.style.transformOrigin = "center";
 sealArt.style.filter = sealGlow;
+
+function markIntroSeen() {
+  localStorage.setItem(introSeenKey, "true");
+}
+
+function revealSite() {
+  site.classList.remove("hidden");
+  document.body.classList.remove("overflow-hidden");
+  resetIntro.classList.remove("hidden");
+}
 
 function setLetterTransform() {
   letter.style.transform = `perspective(900px) translateY(${letterTransform.y}%) rotateX(${letterTransform.rotateX}deg) rotateY(${letterTransform.rotateY}deg)`;
@@ -34,15 +47,17 @@ function setEnvelopeTransform() {
 setLetterTransform();
 setEnvelopeTransform();
 
-animate(0, [0, -8, 0], {
-  duration: 3,
-  repeat: Infinity,
-  ease: "easeInOut",
-  onUpdate(value) {
-    envelopeTransform.bobY = value;
-    setEnvelopeTransform();
-  },
-});
+if (!introSeen) {
+  animate(0, [0, -8, 0], {
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+    onUpdate(value) {
+      envelopeTransform.bobY = value;
+      setEnvelopeTransform();
+    },
+  });
+}
 
 function animateSeal(scale, filter, duration) {
   if (opened) return;
@@ -146,8 +161,8 @@ async function openEnvelope() {
 
   await Promise.all([letterYAnimation.finished, envelopeYAnimation.finished]);
 
-  site.classList.remove("hidden");
-  document.body.classList.remove("overflow-hidden");
+  markIntroSeen();
+  revealSite();
 
   animate(window.scrollY, site.offsetTop, {
     duration: 2.4,
@@ -159,15 +174,43 @@ async function openEnvelope() {
   });
 }
 
-envelope.addEventListener("pointermove", tiltLetter);
-envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
-seal.addEventListener("pointerenter", () =>
-  animateSeal(1.1, sealHoverGlow, 0.2),
-);
-seal.addEventListener("pointerleave", () => animateSeal(1, sealGlow, 0.2));
-seal.addEventListener("pointerdown", () =>
-  animateSeal(0.9, sealHoverGlow, 0.1),
-);
-seal.addEventListener("pointerup", () => animateSeal(1.1, sealHoverGlow, 0.2));
-seal.addEventListener("pointercancel", () => animateSeal(1, sealGlow, 0.2));
-seal.addEventListener("click", openEnvelope);
+function completeIntroState() {
+  opened = true;
+  letterTransform.y = 0;
+  letterTransform.rotateX = 0;
+  letterTransform.rotateY = 0;
+  envelopeTransform.baseY = 0;
+  envelopeTransform.bobY = 0;
+  setLetterTransform();
+  setEnvelopeTransform();
+  letterMask.classList.remove("overflow-hidden");
+  flap.style.zIndex = "0";
+  flap.style.transform = "rotateX(180deg)";
+  seal.remove();
+  revealSite();
+  requestAnimationFrame(() => scrollTo(0, site.offsetTop));
+}
+
+resetIntro.addEventListener("click", () => {
+  localStorage.removeItem(introSeenKey);
+  location.reload();
+});
+
+if (introSeen) {
+  completeIntroState();
+} else {
+  envelope.addEventListener("pointermove", tiltLetter);
+  envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
+  seal.addEventListener("pointerenter", () =>
+    animateSeal(1.1, sealHoverGlow, 0.2),
+  );
+  seal.addEventListener("pointerleave", () => animateSeal(1, sealGlow, 0.2));
+  seal.addEventListener("pointerdown", () =>
+    animateSeal(0.9, sealHoverGlow, 0.1),
+  );
+  seal.addEventListener("pointerup", () =>
+    animateSeal(1.1, sealHoverGlow, 0.2),
+  );
+  seal.addEventListener("pointercancel", () => animateSeal(1, sealGlow, 0.2));
+  seal.addEventListener("click", openEnvelope);
+}

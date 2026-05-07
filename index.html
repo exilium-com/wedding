@@ -6,19 +6,19 @@
     <title>Allie & Caio</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="m-0 overflow-hidden bg-[#f7ead8] text-[#3e213a]">
-    <main
-      class="grid min-h-screen place-items-center overflow-hidden [perspective:1000px]"
-    >
-      <div class="envelope relative w-[700px] drop-shadow-2xl">
-        <img src="new-assets/envelope_back.png" />
+  <body class="m-0 overflow-hidden bg-[#f7ead8]">
+    <main class="grid min-h-screen place-items-center overflow-hidden">
+      <div class="envelope relative w-1/4 drop-shadow-2xl">
+        <img class="block w-full" src="new-assets/envelope_back.png" />
 
         <div
           class="letter-mask absolute inset-x-0 bottom-8 z-10 overflow-hidden px-12"
         >
           <div class="letter relative translate-y-3/4 mb-20">
             <img class="block w-full" src="new-assets/letter.png" />
-            <h3 class="script absolute inset-x-0 top-16 z-20 text-center text-4xl">
+            <h3
+              class="script absolute inset-x-0 top-16 z-20 text-center text-4xl"
+            >
               Allie & Caio
               <br />
               May 29th, 2027
@@ -27,16 +27,16 @@
         </div>
 
         <img
-          class="absolute inset-0 z-20"
+          class="absolute inset-0 z-20 h-full w-full"
           src="new-assets/envelope_front.png"
         />
         <img
-          class="flap absolute inset-0 z-30 origin-top"
+          class="flap absolute inset-0 z-30 h-full w-full origin-top"
           src="new-assets/envelope_flap.png"
         />
 
         <img
-          class="seal-art pointer-events-none absolute inset-0 z-40"
+          class="seal-art pointer-events-none absolute inset-0 z-40 h-full w-full"
           src="new-assets/envelope_seal.png"
         />
 
@@ -48,202 +48,192 @@
       </div>
     </main>
 
-    <section
-      id="site"
-      class="hidden min-h-screen bg-[#fbf2e8] bg-[radial-gradient(#ead8ca_1px,transparent_1px)] text-[#493147] [background-size:18px_18px]"
-    >
-      <section class="relative min-h-screen overflow-hidden">
-        <img
-          class="absolute inset-0 h-full w-full object-cover"
-          src="assets/generated/berkeley-redwoods-watercolor.png"
-          alt="Watercolor redwood garden stairs"
-        />
-        <div class="absolute inset-0 bg-[#fbf2e8]/20"></div>
-        <div
-          class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#fbf2e8] to-transparent"
-        ></div>
-
-        <header
-          class="relative z-10 border-b border-[#e8cfc2] bg-[#fbf2e8]/80 px-6 py-5 backdrop-blur-sm"
-        >
+    <section id="site" class="site-page hidden min-h-screen">
+      <header class="relative z-10 grid justify-items-center px-5 pt-10">
+        <h1 class="script m-0 text-7xl">Our Wedding</h1>
+        <div class="torn-nav mt-4 w-3/4 max-w-6xl p-10 drop-shadow-2xl">
           <nav
-            class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-10"
+            class="flex flex-wrap items-center justify-center gap-10 text-center font-serif text-sm uppercase tracking-widest"
+            aria-label="Wedding information"
           >
-            <a class="grid place-items-center gap-2 text-center" href="#story">
+            <a
+              class="grid justify-items-center gap-2 no-underline"
+              href="#overview"
+            >
               <img
                 class="h-20 w-20 object-contain"
                 src="assets/generated/icon-story.png"
-                alt=""
               />
-              <span class="script text-3xl">
-                Story
-              </span>
+              <span>Overview</span>
             </a>
-            <a class="grid place-items-center gap-2 text-center" href="#details">
+            <a
+              class="grid justify-items-center gap-2 no-underline"
+              href="#travel"
+            >
               <img
                 class="h-20 w-20 object-contain"
                 src="assets/generated/icon-details.png"
-                alt=""
               />
-              <span class="script text-3xl">
-                Details
-              </span>
+              <span>Travel</span>
             </a>
             <a
-              class="grid place-items-center gap-2 text-center"
+              class="grid justify-items-center gap-2 no-underline"
               href="#schedule"
             >
               <img
                 class="h-20 w-20 object-contain"
                 src="assets/generated/icon-schedule.png"
-                alt=""
               />
-              <span class="script text-3xl">
-                Schedule
-              </span>
+              <span>Schedule</span>
             </a>
-            <a class="grid place-items-center gap-2 text-center" href="#rsvp">
+            <a
+              class="grid justify-items-center gap-2 no-underline"
+              href="#details"
+            >
               <img
                 class="h-20 w-20 object-contain"
                 src="assets/generated/icon-rsvp.png"
-                alt=""
               />
-              <span class="script text-3xl">
-                RSVP
-              </span>
+              <span>Details</span>
+            </a>
+            <a
+              class="grid justify-items-center gap-2 no-underline"
+              href="#bay-area"
+            >
+              <img
+                class="h-20 w-20 object-contain"
+                src="assets/generated/icon-story.png"
+              />
+              <span>Bay Area</span>
             </a>
           </nav>
-        </header>
+        </div>
+      </header>
+      <img
+        class="redwood-splash pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-screen w-1/2 -translate-y-1/2 object-cover opacity-70"
+        src="assets/generated/berkeley-redwoods-watercolor.png"
+        aria-hidden="true"
+      />
 
-        <section
-          class="relative z-10 grid min-h-[calc(100vh-190px)] content-end justify-items-center px-6 pb-16 text-center"
-        >
-          <h2 class="script m-0 text-7xl leading-none text-[#5b3b63]">
-            We're Getting Married!
-          </h2>
-          <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#5b3b63]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </section>
-      </section>
+      <div
+        class="relative z-10 mx-auto grid w-2/3 max-w-5xl justify-items-center px-6 pb-20 pt-14 text-center font-serif text-lg leading-8"
+      >
+        <section id="overview" class="pb-96 pt-32"></section>
 
-      <div class="mx-auto max-w-7xl px-6">
-        <section class="mx-auto max-w-3xl py-16 text-center">
-          <p class="mx-auto mt-8 max-w-2xl text-lg leading-8 text-[#6d5864]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris.
-          </p>
-        </section>
-
-        <section class="grid gap-10 py-8 md:grid-cols-3">
-          <article id="story" class="text-center">
-            <img
-              class="mx-auto h-32 w-32 object-contain"
-              src="assets/generated/icon-story.png"
-              alt=""
-            />
-            <h2 class="script mt-4 text-5xl text-[#5b3b63]">
-              Our Story
-            </h2>
-            <p class="mt-4 text-base leading-7 text-[#6d5864]">
+        <section id="travel" class="site-section relative py-20">
+          <h2 class="script mb-8 mt-0 text-7xl">Getting There & Lodging</h2>
+          <div class="grid gap-12">
+            <p class="m-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              nec odio. Praesent libero. Sed cursus ante dapibus diam.
+              nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+              Nulla quis sem at nibh elementum imperdiet.
             </p>
-          </article>
-
-          <article id="details" class="text-center">
-            <img
-              class="mx-auto h-32 w-32 object-contain"
-              src="assets/generated/icon-details.png"
-              alt=""
-            />
-            <h2 class="script mt-4 text-5xl text-[#5b3b63]">
-              Details
-            </h2>
-            <p class="mt-4 text-base leading-7 text-[#6d5864]">
+            <p class="m-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
               quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            </p>
-          </article>
-
-          <article id="schedule" class="text-center">
-            <img
-              class="mx-auto h-32 w-32 object-contain"
-              src="assets/generated/icon-schedule.png"
-              alt=""
-            />
-            <h2 class="script mt-4 text-5xl text-[#5b3b63]">
-              Schedule
-            </h2>
-            <p class="mt-4 text-base leading-7 text-[#6d5864]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              consequat massa quis enim. Donec pede justo, fringilla vel.
-            </p>
-          </article>
-        </section>
-
-        <section class="mx-auto grid max-w-5xl gap-10 py-16 md:grid-cols-2">
-          <div>
-            <h2 class="script text-6xl text-[#5b3b63]">
-              Garden Notes
-            </h2>
-            <p class="mt-5 text-lg leading-8 text-[#6d5864]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient montes.
-            </p>
-            <p class="mt-5 text-lg leading-8 text-[#6d5864]">
-              Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-              sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-              vel, aliquet nec, vulputate eget, arcu.
-            </p>
-          </div>
-
-          <div>
-            <h2 class="script text-6xl text-[#5b3b63]">
-              Travel
-            </h2>
-            <p class="mt-5 text-lg leading-8 text-[#6d5864]">
-              In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-              Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
-            </p>
-            <p class="mt-5 text-lg leading-8 text-[#6d5864]">
-              Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
-              eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae,
-              eleifend ac, enim.
+              Nulla consequat massa quis enim.
             </p>
           </div>
         </section>
 
-        <section
-          id="rsvp"
-          class="mx-auto max-w-3xl border-y border-[#e8cfc2] py-16 text-center"
-        >
-          <h2 class="script m-0 text-7xl text-[#5b3b63]">
-            Kindly Reply
+        <section id="schedule" class="site-section relative py-20">
+          <h2 class="script mb-8 mt-0 text-7xl">Schedule</h2>
+          <div class="grid gap-6">
+            <article
+              class="grid justify-items-center gap-2 border-t border-[#ac7e65]/20 py-6"
+            >
+              <time class="text-sm uppercase tracking-widest"> 00:00 </time>
+              <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+              </p>
+            </article>
+            <article
+              class="grid justify-items-center gap-2 border-t border-[#ac7e65]/20 py-6"
+            >
+              <time class="text-sm uppercase tracking-widest"> 00:00 </time>
+              <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa.
+              </p>
+            </article>
+            <article
+              class="grid justify-items-center gap-2 border-y border-[#ac7e65]/20 py-6"
+            >
+              <time class="text-sm uppercase tracking-widest"> 00:00 </time>
+              <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum
+                sociis natoque penatibus et magnis dis parturient montes.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="details" class="site-section relative py-20">
+          <h2 class="script mb-8 mt-0 text-7xl">
+            Gift Situation, Attire & Weather
           </h2>
-          <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-[#6d5864]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <button
-            class="mt-8 border border-[#c99a96] bg-[#ead0cd] px-12 py-3 text-lg uppercase tracking-widest text-[#5b3b63]"
-            type="button"
-          >
-            RSVP
-          </button>
+          <div class="grid gap-10">
+            <article class="border-t border-[#ac7e65]/25 pt-6">
+              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+                Gift Situation
+              </h3>
+              <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+              </p>
+            </article>
+            <article class="border-t border-[#ac7e65]/25 pt-6">
+              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+                Attire
+              </h3>
+              <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In enim
+                justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+              </p>
+            </article>
+            <article class="border-t border-[#ac7e65]/25 pt-6">
+              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+                Weather
+              </h3>
+              <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                dictum felis eu pede mollis pretium. Integer tincidunt.
+              </p>
+            </article>
+          </div>
         </section>
 
-        <footer class="py-12 text-center">
-          <p class="script text-4xl text-[#5b3b63]">
-            We can't wait to celebrate with you.
-          </p>
-          <p class="mt-2 text-2xl text-[#c4827a]">♥</p>
+        <section id="bay-area" class="site-section relative py-20">
+          <h2 class="script mb-8 mt-0 text-7xl">
+            Things to Do in the Bay Area
+          </h2>
+          <div class="grid gap-12">
+            <p class="m-0">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+              consequat massa quis enim. Donec pede justo, fringilla vel,
+              aliquet nec, vulputate eget, arcu.
+            </p>
+            <p class="m-0">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+              consequat vitae, eleifend ac, enim.
+            </p>
+          </div>
+        </section>
+
+        <footer class="py-9 text-center">
+          <p class="script m-0 text-6xl">Allie & Caio</p>
         </footer>
       </div>
     </section>
+
+    <button
+      class="reset-intro fixed bottom-4 left-4 z-50 hidden border border-[#c99a96]/70 bg-[#fbf2e8]/85 px-3 py-2 font-serif text-xs uppercase tracking-widest shadow-sm backdrop-blur-sm"
+      type="button"
+    >
+      Reset intro
+    </button>
 
     <script type="module" src="script.js"></script>
   </body>

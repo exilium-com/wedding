@@ -3,9 +3,56 @@
   src: url("assets/fonts/great-vibes.ttf") format("truetype");
 }
 
+body {
+  color: #684768;
+}
+
 .script {
   font-family: "Great Vibes", cursive;
   font-weight: 400;
+}
+
+.site-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 248, 236, 0.6), rgba(255, 248, 236, 0.6)),
+    url("assets/generated/parchment-pressed-flower-sides.png") center top /
+      100% auto repeat-y,
+    #f9eedc;
+}
+
+.site-page::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: 12rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #f7ead8, transparent);
+}
+
+.torn-nav {
+  background: url("assets/generated/torn-nav-parchment.png") center / 100% 100%
+    no-repeat;
+}
+
+.redwood-splash {
+  mask-image: radial-gradient(ellipse, #000 45%, transparent 75%);
+}
+
+.site-section::before {
+  content: "";
+  position: absolute;
+  top: -3rem;
+  inset-inline: 0;
+  width: 36rem;
+  max-width: 75%;
+  height: 6rem;
+  margin: auto;
+  background: url("assets/generated/section-divider.png") center / contain
+    no-repeat;
 }
 
 @tailwind base;
