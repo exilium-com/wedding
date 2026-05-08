@@ -3,8 +3,8 @@
   src: url("assets/fonts/great-vibes.ttf") format("truetype");
 }
 
-body {
-  color: #684768;
+html {
+  scrollbar-gutter: stable;
 }
 
 .script {
@@ -12,19 +12,12 @@ body {
   font-weight: 400;
 }
 
-.seal {
-  appearance: none;
-  border: none;
-}
-
 .site-page {
-  position: relative;
-  isolation: isolate;
   background:
-    linear-gradient(rgba(255, 248, 236, 0.6), rgba(255, 248, 236, 0.6)),
+    linear-gradient(rgba(247, 234, 216, 0.6), rgba(247, 234, 216, 0.6)),
     url("assets/generated/parchment-pressed-flower-sides.png") center top / 100%
       auto repeat-y,
-    #f9eedc;
+    #f7ead8;
 }
 
 .site-page::before {
@@ -42,18 +35,49 @@ body {
     no-repeat;
 }
 
+.ink-redwood.is-active .redwood-splash {
+  animation: redwood-ink 3s steps(39) forwards;
+}
+
 .redwood-splash {
-  mask-image: radial-gradient(ellipse at bottom, #000 45%, transparent 65%);
+  mask-image:
+    url("assets/generated/ink-transition-sprite-alpha-mask.png"),
+    linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  mask-size:
+    4000% 100%,
+    auto,
+    auto;
+  mask-position:
+    left center,
+    center,
+    center;
+  mask-repeat: no-repeat;
+  mask-mode: alpha, alpha, alpha;
+  mask-composite: intersect, intersect;
+}
+
+@keyframes redwood-ink {
+  to {
+    -webkit-mask-position:
+      right center,
+      center,
+      center;
+    mask-position:
+      right center,
+      center,
+      center;
+  }
 }
 
 .site-section::before {
   content: "";
   position: absolute;
-  top: -3rem;
+  top: -6rem;
   inset-inline: 0;
   width: 36rem;
   max-width: 75%;
-  height: 6rem;
+  height: 12rem;
   margin: auto;
   background: url("assets/generated/section-divider.png") center / contain
     no-repeat;

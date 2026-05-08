@@ -8,7 +8,8 @@ const letter = document.querySelector(".letter");
 const site = document.querySelector("#site");
 const letterMask = document.querySelector(".letter-mask");
 const resetIntro = document.querySelector(".reset-intro");
-const siteRedwood = document.querySelector(".redwood-splash");
+const siteRedwood = document.querySelector(".ink-redwood");
+const redwoodSplash = document.querySelector(".redwood-splash");
 
 const introSeenKey = "weddingIntroSeen";
 const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
@@ -38,11 +39,16 @@ function revealSite() {
 }
 
 function revealRedwood() {
-  return animate(
-    siteRedwood,
-    { opacity: 0.7 },
-    { duration: 2, ease: "easeOut" },
-  );
+  return new Promise((resolve) => {
+    siteRedwood.classList.add("is-active");
+    redwoodSplash.addEventListener(
+      "animationend",
+      () => {
+        resolve();
+      },
+      { once: true },
+    );
+  });
 }
 
 function setLetterTransform() {
@@ -56,17 +62,15 @@ function setEnvelopeTransform() {
 setLetterTransform();
 setEnvelopeTransform();
 
-if (!introSeen) {
-  animate(0, [0, -8, 0], {
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut",
-    onUpdate(value) {
-      envelopeTransform.bobY = value;
-      setEnvelopeTransform();
-    },
-  });
-}
+animate(0, [0, -8, 0], {
+  duration: 3,
+  repeat: Infinity,
+  ease: "easeInOut",
+  onUpdate(value) {
+    envelopeTransform.bobY = value;
+    setEnvelopeTransform();
+  },
+});
 
 function animateSeal(scale, filter, duration) {
   if (opened) return;
@@ -80,7 +84,6 @@ function animateSeal(scale, filter, duration) {
 }
 
 function animateLetterTilt(rotateX, rotateY, duration) {
-  if (!opened) return;
   letterTiltAnimations.forEach((animation) => animation.stop());
   letterTiltAnimations = [
     animate(letterTransform.rotateX, rotateX, {
@@ -136,7 +139,7 @@ async function openEnvelope() {
 
   await animate(
     flap,
-    { transform: ["rotateX(90deg)", "rotateX(180deg)"] },
+    { transform: ["rotateX(90deg)", "rotateX(180deg) translateY(-4px)"] },
     { duration: 0.68, ease: [0.2, 0.82, 0.18, 1] },
   ).finished;
 
@@ -144,6 +147,8 @@ async function openEnvelope() {
   envelopeYAnimation?.stop();
   const letterStartY = letterTransform.y;
   const envelopeDrop = (letter.offsetHeight * letterStartY) / 300;
+  revealSite();
+  const redwoodReveal = revealRedwood();
 
   letterYAnimation = animate(letterStartY, 0, {
     duration: 1.5,
@@ -168,11 +173,13 @@ async function openEnvelope() {
     },
   });
 
-  await Promise.all([letterYAnimation.finished, envelopeYAnimation.finished]);
+  await Promise.all([
+    letterYAnimation.finished,
+    envelopeYAnimation.finished,
+    redwoodReveal,
+  ]);
 
   markIntroSeen();
-  revealSite();
-  revealRedwood();
 
   animate(window.scrollY, site.offsetTop, {
     duration: 2.4,
@@ -195,10 +202,10 @@ function completeIntroState() {
   setEnvelopeTransform();
   letterMask.classList.remove("overflow-hidden");
   flap.style.zIndex = "0";
-  flap.style.transform = "rotateX(180deg)";
+  flap.style.transform = "rotateX(180deg) translateY(-4px)";
   seal.remove();
   revealSite();
-  siteRedwood.style.opacity = "0.7";
+  siteRedwood.classList.add("is-active");
   requestAnimationFrame(() => scrollTo(0, site.offsetTop));
 }
 
@@ -207,11 +214,12 @@ resetIntro.addEventListener("click", () => {
   location.reload();
 });
 
+envelope.addEventListener("pointermove", tiltLetter);
+envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
+
 if (introSeen) {
   completeIntroState();
 } else {
-  envelope.addEventListener("pointermove", tiltLetter);
-  envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
   seal.addEventListener("pointerenter", () =>
     animateSeal(1.1, sealHoverGlow, 0.2),
   );
