@@ -10,6 +10,7 @@ const letterMask = document.querySelector(".letter-mask");
 const resetIntro = document.querySelector(".reset-intro");
 const siteRedwood = document.querySelector(".ink-redwood");
 const redwoodSplash = document.querySelector(".redwood-splash");
+const paintImages = document.querySelectorAll(".paint-image");
 
 const introSeenKey = "weddingIntroSeen";
 const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
@@ -49,6 +50,27 @@ function revealRedwood() {
       { once: true },
     );
   });
+}
+
+function setupPaintImages() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    paintImages.forEach((image) => image.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -15% 0px", threshold: 0.15 },
+  );
+
+  paintImages.forEach((image) => observer.observe(image));
 }
 
 function setLetterTransform() {
@@ -216,6 +238,7 @@ resetIntro.addEventListener("click", () => {
 
 envelope.addEventListener("pointermove", tiltLetter);
 envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
+setupPaintImages();
 
 if (introSeen) {
   completeIntroState();

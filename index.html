@@ -14,7 +14,7 @@
         <div class="ink-redwood pointer-events-none relative h-full w-full">
           <img
             class="redwood-splash absolute left-1/2 top-0 block h-full max-w-none -translate-x-1/2"
-            src="assets/generated/berkeley-redwoods-watercolor-alpha.png"
+            src="assets/redwoods.png"
           />
         </div>
       </div>
@@ -60,7 +60,7 @@
 
     <section id="site" class="relative z-0 isolate hidden min-h-screen">
       <nav
-        class="torn-nav sticky top-0 z-20 mx-auto flex w-fit max-w-full flex-nowrap items-start justify-center gap-2 p-8 py-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl sm:min-w-[48rem] sm:gap-6 sm:p-8 sm:text-xs"
+        class="torn-nav sticky top-0 z-20 mx-auto flex w-fit max-w-full flex-nowrap items-start justify-center gap-2 p-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl sm:min-w-[48rem] sm:gap-6 sm:p-8 sm:text-xs"
         aria-label="Wedding information"
       >
         <a
@@ -69,7 +69,7 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
-            src="assets/generated/icon-story.png"
+            src="assets/icon-story.png"
           />
           <span class="leading-tight">Overview</span>
         </a>
@@ -79,7 +79,7 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
-            src="assets/generated/icon-details.png"
+            src="assets/icon-details.png"
           />
           <span class="leading-tight">Travel</span>
         </a>
@@ -89,7 +89,7 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
-            src="assets/generated/icon-schedule.png"
+            src="assets/icon-schedule.png"
           />
           <span class="leading-tight">Schedule</span>
         </a>
@@ -99,7 +99,7 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
-            src="assets/generated/icon-rsvp.png"
+            src="assets/icon-rsvp.png"
           />
           <span class="leading-tight">Details</span>
         </a>
@@ -109,21 +109,29 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
-            src="assets/generated/icon-story.png"
+            src="assets/icon-story.png"
           />
           <span class="leading-tight">Bay Area</span>
         </a>
       </nav>
 
-      <div class="relative z-10 mx-auto grid w-2/3 max-w-5xl gap-20 text-center font-serif text-lg">
+      <div
+        class="relative z-10 mx-auto grid w-11/12 max-w-5xl gap-20 text-center font-serif text-lg md:text-2xl md:w-2/3"
+      >
         <section id="overview" class="py-20">
-          <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">When</h3>
+          <h3
+            class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+          >
+            When
+          </h3>
           <p>
             Saturday, May 29, 2027
             <br />
             5:00 pm to 11:00 pm
           </p>
-          <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+          <h3
+            class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+          >
             Where
           </h3>
           <p>
@@ -139,11 +147,14 @@
             minute walk). There will be staff on-site to direct you to the
             reception hall.
           </p>
-          <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+          <h3
+            class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+          >
             RSVP
           </h3>
           <p>
             <a
+              class="break-all"
               href="https://docs.google.com/forms/d/1QktiuGSVSggq0pkJ5Irf69tA8ty5eCuw1feYvifrjUE"
             >
               https://docs.google.com/forms/d/1QktiuGSVSggq0pkJ5Irf69tA8ty5eCuw1feYvifrjUE
@@ -152,10 +163,17 @@
         </section>
 
         <section id="travel" class="site-section relative grid gap-20 py-20">
-          <h2 class="script mb-8 mt-0 text-7xl">Travel</h2>
+          <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Travel</h2>
           <div class="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/logistics-mobile.png"
+                alt="Watercolor garden path, car, transit, and flowers"
+              />
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
                 Logistics & Arrival
               </h3>
               <p>
@@ -185,20 +203,27 @@
               </p>
             </div>
             <img
-              class="w-full max-w-md justify-self-center object-contain"
-              src="assets/generated/section-art/logistics.png"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/logistics.png"
               alt="Watercolor garden path, car, transit, and flowers"
             />
           </div>
 
           <div class="grid items-center gap-10 md:grid-cols-2">
             <img
-              class="w-full max-w-md justify-self-center object-contain"
-              src="assets/generated/section-art/lodging.png"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/lodging.png"
               alt="Watercolor hotel key, suitcase, map, and flowers"
             />
             <div>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/lodging-mobile.png"
+                alt="Watercolor hotel key, suitcase, map, and flowers"
+              />
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
                 Lodging
               </h3>
               <p>
@@ -229,9 +254,17 @@
           </div>
         </section>
 
-        <section id="schedule" class="site-section relative grid items-center gap-10 py-20 md:grid-cols-2">
+        <section
+          id="schedule"
+          class="site-section relative grid items-center gap-10 py-20 md:grid-cols-2"
+        >
           <div>
-            <h2 class="script mb-8 mt-0 text-7xl">Schedule</h2>
+            <img
+              class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+              src="assets/schedule-mobile.png"
+              alt="Watercolor pocket watch with redwood leaves and flowers"
+            />
+            <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Schedule</h2>
             <p>
               All events will be held at the University of California Botanical
               Garden at Berkeley.
@@ -239,46 +272,63 @@
             <table class="mx-auto text-left">
               <tbody>
                 <tr>
-                  <th class="pr-6 text-right align-baseline">5:00 pm</th>
+                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
+                    5:00 pm
+                  </th>
                   <td>guests may enter the Redwood Grove</td>
                 </tr>
                 <tr>
-                  <th class="pr-6 text-right align-baseline">5:30 pm</th>
+                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
+                    5:30 pm
+                  </th>
                   <td>Ceremony Start in the Redwood Grove</td>
                 </tr>
                 <tr>
-                  <th class="pr-6 text-right align-baseline">6:00 pm</th>
+                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
+                    6:00 pm
+                  </th>
                   <td>reception begins in Julia Morgan Hall</td>
                 </tr>
                 <tr>
-                  <th class="pr-6 text-right align-baseline">8:23 pm</th>
+                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
+                    8:23 pm
+                  </th>
                   <td>sunset! (the Hall deck faces West toward the Bay!)</td>
                 </tr>
                 <tr>
-                  <th class="pr-6 text-right align-baseline">11:00 pm</th>
+                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
+                    11:00 pm
+                  </th>
                   <td>reception ends in Julia Morgan Hall</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <img
-            class="w-full max-w-md justify-self-center object-contain"
-            src="assets/generated/section-art/schedule-transparent.png"
+            class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+            src="assets/schedule.png"
             alt="Watercolor pocket watch with redwood leaves and flowers"
           />
         </section>
 
         <section id="details" class="site-section relative grid gap-20 py-20">
-          <h2 class="script mb-8 mt-0 text-7xl">Details</h2>
+          <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Details</h2>
           <div class="grid items-center gap-10 md:grid-cols-2">
             <img
-              class="w-full max-w-md justify-self-center object-contain"
-              src="assets/generated/section-art/gifts-attire.png"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/gifts-attire.png"
               alt="Watercolor gift, attire ribbon, shawl, and flowers"
             />
             <div>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
-                Gift Situation
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/gifts-attire-mobile.png"
+                alt="Watercolor gift, attire ribbon, shawl, and flowers"
+              />
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
+                Gifts
               </h3>
               <p>We do not have a registry for this event.</p>
               <p>
@@ -286,7 +336,9 @@
                 greatly appreciated. We would be especially grateful for any
                 contributions toward our honeymoon - destination TBA!
               </p>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
                 Attire
               </h3>
               <p>
@@ -299,7 +351,14 @@
 
           <div class="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/weather-mobile.png"
+                alt="Watercolor shawl, breeze, sunshine, and flowers"
+              />
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
                 Weather
               </h3>
               <p>
@@ -313,8 +372,8 @@
               <p>Overall, we recommend bringing layers!</p>
             </div>
             <img
-              class="w-full max-w-md justify-self-center object-contain"
-              src="assets/generated/section-art/weather.png"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/weather.png"
               alt="Watercolor shawl, breeze, sunshine, and flowers"
             />
           </div>
@@ -323,7 +382,12 @@
         <section id="bay-area" class="site-section relative grid gap-20 py-20">
           <div class="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <h2 class="script mb-8 mt-0 text-7xl">Bay Area</h2>
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/bay-area-mobile.png"
+                alt="Watercolor Bay Area landscape with coastal and redwood details"
+              />
+              <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Bay Area</h2>
               <p>
                 If you're traveling from out-of-town, there is so much to do
                 here in the Bay Area while you're visiting! Here are some
@@ -356,20 +420,27 @@
               </ul>
             </div>
             <img
-              class="w-full max-w-md justify-self-center object-contain"
-              src="assets/generated/section-art/bay-area-transparent.png"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/bay-area.png"
               alt="Watercolor Bay Area landscape with coastal and redwood details"
             />
           </div>
 
           <div class="grid items-center gap-10 md:grid-cols-2">
             <img
-              class="w-full max-w-md justify-self-center object-contain"
-              src="assets/generated/section-art/garden-transparent.png"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/garden.png"
               alt="Watercolor botanical garden map with redwood needles and flowers"
             />
             <div>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/garden-mobile.png"
+                alt="Watercolor botanical garden map with redwood needles and flowers"
+              />
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
                 About the Garden
               </h3>
               <p>
@@ -393,7 +464,9 @@
                 Berkeley guidelines, are permitted and must first check in and
                 be cleared at the Kiosk by Garden staff.
               </p>
-              <h3 class="mt-0 text-sm font-bold uppercase tracking-widest">
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
                 Garden Rules for Guests
               </h3>
               <p>
@@ -411,7 +484,7 @@
         </section>
 
         <footer class="py-9 text-center">
-          <p class="script m-0 text-6xl">Allie & Caio</p>
+          <p class="script m-0 text-4xl md:text-6xl">Allie & Caio</p>
         </footer>
       </div>
     </section>

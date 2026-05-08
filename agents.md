@@ -24,7 +24,7 @@
 - Use ImageGen for visual assets: concept art, watercolor hero art, envelope/card pieces, pressed-flower paper, wax seals, and nav/header icons.
 - For transparent icon or sprite assets, generate on a flat chroma-key background, then remove the key locally and keep final transparent PNGs in the repo.
 - Copy selected generated files into project assets; do not move/delete originals from the Codex generated-images directory.
-- Keep reusable generated site assets under `assets/generated/`.
+- Keep reusable generated site assets flat under `assets/`; avoid nested generated/source folders unless there is a concrete need.
 - Resize oversized transparent icons down to sensible web asset dimensions after alpha cleanup.
 - If a generated source asset has a chroma-key background, keep the source if useful but reference the transparent processed output from the app.
 

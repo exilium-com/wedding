@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Great Vibes";
-  src: url("assets/fonts/great-vibes.ttf") format("truetype");
+  src: url("assets/great-vibes.ttf") format("truetype");
 }
 
 html {
@@ -15,7 +15,7 @@ html {
 .site-page {
   background:
     linear-gradient(rgba(247, 234, 216, 0.6), rgba(247, 234, 216, 0.6)),
-    url("assets/generated/parchment-pressed-flower-sides.png") center top / 100%
+    url("assets/parchment-pressed-flower-sides.png") center top / 100%
       auto repeat-y,
     #f7ead8;
 }
@@ -31,7 +31,7 @@ html {
 }
 
 .torn-nav {
-  background: url("assets/generated/torn-nav-parchment.png") center / 100% 100%
+  background: url("assets/torn-nav-parchment.png") center / 100% 100%
     no-repeat;
 }
 
@@ -41,7 +41,7 @@ html {
 
 .redwood-splash {
   mask-image:
-    url("assets/generated/ink-transition-sprite-alpha-mask.png"),
+    url("assets/ink-transition-sprite-alpha-mask.png"),
     linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
     linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
   mask-size:
@@ -57,6 +57,22 @@ html {
   mask-composite: intersect, intersect;
 }
 
+.paint-image {
+  -webkit-mask-image: url("assets/ink-transition-sprite-alpha-mask.png");
+  -webkit-mask-size: 4000% 100%;
+  -webkit-mask-position: left center;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: url("assets/ink-transition-sprite-alpha-mask.png");
+  mask-size: 4000% 100%;
+  mask-position: left center;
+  mask-repeat: no-repeat;
+  mask-mode: alpha;
+}
+
+.paint-image.is-visible {
+  animation: paint-image 3s steps(39) forwards;
+}
+
 @keyframes redwood-ink {
   to {
     -webkit-mask-position:
@@ -70,6 +86,21 @@ html {
   }
 }
 
+@keyframes paint-image {
+  to {
+    -webkit-mask-position: right center;
+    mask-position: right center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paint-image.is-visible {
+    animation: none;
+    -webkit-mask-position: right center;
+    mask-position: right center;
+  }
+}
+
 .site-section::before {
   content: "";
   position: absolute;
@@ -79,7 +110,7 @@ html {
   max-width: 75%;
   height: 12rem;
   margin: auto;
-  background: url("assets/generated/section-divider.png") center / contain
+  background: url("assets/section-divider.png") center / contain
     no-repeat;
 }
 
