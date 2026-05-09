@@ -27,13 +27,12 @@
         >
           <div class="letter relative translate-y-3/4 mb-[20%]">
             <img class="block w-full" src="assets/letter.png" />
-            <!-- <h3
-              class="script absolute inset-x-0 top-16 z-20 text-center text-4xl"
-            >
-              Allie & Caio
-              <br />
-              May 29th, 2027
-            </h3> -->
+            <canvas
+              class="letter-calligraphy"
+              width="995"
+              height="1260"
+              aria-hidden="true"
+            ></canvas>
           </div>
         </div>
 
@@ -489,12 +488,22 @@
       </div>
     </section>
 
-    <button
-      class="reset-intro fixed bottom-4 left-4 z-50 hidden bg-paper-soft/85 px-3 py-2 font-serif text-xs uppercase tracking-widest shadow-sm backdrop-blur-sm"
-      type="button"
+    <div
+      class="debug-controls fixed bottom-4 left-4 z-50 hidden flex items-center gap-2"
     >
-      Reset intro
-    </button>
+      <button
+        class="reset-intro bg-paper-soft/85 px-3 py-2 font-serif text-xs uppercase tracking-widest shadow-sm backdrop-blur-sm"
+        type="button"
+      >
+        Reset intro
+      </button>
+      <button
+        class="next-letter-option hidden bg-paper-soft/85 px-3 py-2 font-serif text-xs uppercase tracking-widest shadow-sm backdrop-blur-sm"
+        type="button"
+      >
+        Next letter
+      </button>
+    </div>
 
     <script type="module" src="script.js"></script>
   </body>

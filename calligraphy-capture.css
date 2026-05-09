@@ -1,0 +1,361 @@
+@font-face {
+  font-family: "Great Vibes";
+  src: url("assets/great-vibes.ttf") format("truetype");
+}
+
+:root {
+  color-scheme: light;
+  --paper: #f7ead8;
+  --paper-soft: #fffaf0;
+  --paper-deep: #ead8bf;
+  --ink: #2d211e;
+  --muted: #756760;
+  --redwood: #315343;
+  --rose: #9d596c;
+  --gold: #b98445;
+  --line: rgba(49, 83, 67, 0.24);
+  --shadow: 0 22px 70px rgba(51, 35, 22, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(rgba(247, 234, 216, 0.78), rgba(247, 234, 216, 0.78)),
+    url("assets/parchment-pressed-flower-sides.png") center top / 100% auto
+      repeat-y,
+    var(--paper);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+select,
+input[type="color"] {
+  border: 1px solid var(--line);
+  background: rgba(255, 250, 240, 0.86);
+  color: var(--ink);
+}
+
+button {
+  min-height: 2.55rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+button:hover:not(:disabled) {
+  border-color: rgba(157, 89, 108, 0.48);
+  box-shadow: 0 8px 22px rgba(49, 83, 67, 0.12);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--redwood);
+}
+
+input[type="color"] {
+  width: 3.3rem;
+  height: 2.35rem;
+  border-radius: 8px;
+  padding: 0.2rem;
+}
+
+select {
+  min-height: 2.35rem;
+  width: 100%;
+  border-radius: 8px;
+  padding: 0 0.7rem;
+}
+
+.capture-shell {
+  min-height: 100vh;
+  padding: clamp(1rem, 2.8vw, 2rem);
+}
+
+.capture-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 92rem;
+  margin: 0 auto 1rem;
+}
+
+.capture-header h1 {
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--redwood);
+}
+
+.capture-header p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.return-link {
+  border-bottom: 1px solid currentColor;
+  color: var(--rose);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 23rem);
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+  align-items: start;
+  max-width: 92rem;
+  margin: 0 auto;
+}
+
+.stage-wrap {
+  min-width: 0;
+}
+
+.stage {
+  position: relative;
+  width: min(100%, 50.5vh);
+  max-width: 52rem;
+  aspect-ratio: 995 / 1260;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgba(49, 83, 67, 0.18);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  box-shadow: var(--shadow);
+}
+
+.reference-image,
+.drawing-surface,
+.preview-surface {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.reference-image {
+  display: block;
+  object-fit: contain;
+  opacity: 0.42;
+  user-select: none;
+}
+
+.drawing-surface,
+.preview-surface {
+  touch-action: none;
+}
+
+.drawing-surface {
+  cursor: crosshair;
+}
+
+.preview-surface {
+  display: none;
+  background: var(--paper-soft);
+}
+
+.stage.is-previewing .drawing-surface {
+  display: none;
+}
+
+.stage.is-previewing .preview-surface {
+  display: block;
+}
+
+.controls {
+  display: grid;
+  gap: 1rem;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.78);
+  box-shadow: 0 14px 48px rgba(51, 35, 22, 0.1);
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.panel h2 {
+  margin: 0 0 0.9rem;
+  color: var(--redwood);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem 0.75rem;
+  align-items: center;
+  margin-block: 0.9rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.control-row input {
+  grid-column: 1 / -1;
+}
+
+.control-row output {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.select-row,
+.file-row {
+  display: grid;
+  gap: 0.45rem;
+  margin-block: 0.9rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.file-row input {
+  width: 100%;
+}
+
+.meter-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+}
+
+.meter-list div {
+  min-width: 0;
+  border: 1px solid rgba(49, 83, 67, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.38);
+  padding: 0.55rem;
+}
+
+.meter-list dt {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meter-list dd {
+  overflow: hidden;
+  margin: 0.2rem 0 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.button-stack {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  min-width: min(22rem, calc(100vw - 2rem));
+  margin: 0;
+  border: 1px solid rgba(157, 89, 108, 0.22);
+  border-radius: 8px;
+  background: rgba(45, 33, 30, 0.92);
+  color: var(--paper-soft);
+  font-size: 0.86rem;
+  opacity: 0;
+  padding: 0.8rem 0.95rem;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 58rem) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .stage {
+    width: min(100%, 60vh);
+  }
+
+  .controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 46rem) {
+  .capture-shell {
+    padding: 0.9rem;
+  }
+
+  .capture-header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .stage {
+    width: 100%;
+  }
+}

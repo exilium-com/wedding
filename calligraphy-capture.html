@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calligraphy Capture</title>
+    <link rel="stylesheet" href="calligraphy-capture.css" />
+  </head>
+  <body>
+    <main class="capture-shell">
+      <header class="capture-header">
+        <div>
+          <h1>Calligraphy Capture</h1>
+          <p>Letter stroke capture for the invitation reveal.</p>
+        </div>
+        <a class="return-link" href="/">Invitation</a>
+      </header>
+
+      <section class="workspace" aria-label="Calligraphy capture workspace">
+        <div class="stage-wrap">
+          <div class="stage" id="stage">
+            <img
+              id="referenceImage"
+              class="reference-image"
+              src="assets/letter.png"
+              alt=""
+              draggable="false"
+            />
+
+            <svg
+              id="drawingSurface"
+              class="drawing-surface"
+              viewBox="0 0 995 1260"
+              preserveAspectRatio="xMidYMid meet"
+              aria-label="Draw calligraphy strokes"
+            >
+              <g id="strokeLayer"></g>
+              <g id="activeLayer"></g>
+            </svg>
+
+            <canvas
+              id="previewSurface"
+              class="preview-surface"
+              width="1500"
+              height="1260"
+              aria-hidden="true"
+            ></canvas>
+          </div>
+        </div>
+
+        <aside class="controls" aria-label="Capture controls">
+          <section class="panel">
+            <h2>Brush</h2>
+            <label class="control-row">
+              <span>Hairline</span>
+              <output id="hairlineWidthValue">3</output>
+              <input
+                id="hairlineWidth"
+                type="range"
+                min="1"
+                max="18"
+                step="0.5"
+                value="3"
+              />
+            </label>
+
+            <label class="control-row">
+              <span>Shade</span>
+              <output id="shadeWidthValue">30</output>
+              <input
+                id="shadeWidth"
+                type="range"
+                min="4"
+                max="90"
+                step="1"
+                value="30"
+              />
+            </label>
+
+            <label class="control-row">
+              <span>Smoothing</span>
+              <output id="smoothingValue">72%</output>
+              <input
+                id="smoothing"
+                type="range"
+                min="0"
+                max="92"
+                step="1"
+                value="72"
+              />
+            </label>
+
+            <label class="control-row">
+              <span>Reference</span>
+              <output id="referenceOpacityValue">42%</output>
+              <input
+                id="referenceOpacity"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value="42"
+              />
+            </label>
+
+            <label class="select-row">
+              <span>Pressure</span>
+              <select id="pressureMode">
+                <option value="auto">Stylus when available</option>
+                <option value="direction">Direction fallback</option>
+                <option value="speed">Speed fallback</option>
+                <option value="fixed">Fixed shade</option>
+              </select>
+            </label>
+
+            <label class="select-row">
+              <span>Ink</span>
+              <input id="inkColor" type="color" value="#2a1712" />
+            </label>
+          </section>
+
+          <section class="panel">
+            <h2>Capture</h2>
+            <dl class="meter-list">
+              <div>
+                <dt>Strokes</dt>
+                <dd id="strokeCount">0</dd>
+              </div>
+              <div>
+                <dt>Pressure</dt>
+                <dd id="pressureReadout">0.00</dd>
+              </div>
+              <div>
+                <dt>Source</dt>
+                <dd id="pressureSource">idle</dd>
+              </div>
+            </dl>
+
+            <div class="button-grid">
+              <button id="undoStroke" type="button">Undo</button>
+              <button id="clearStrokes" type="button">Clear</button>
+              <button id="previewAnimation" type="button">Preview</button>
+              <button id="stopPreview" type="button" disabled>Stop</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Export</h2>
+            <label class="control-row">
+              <span>Mask width</span>
+              <output id="maskWidthValue">38</output>
+              <input
+                id="maskWidth"
+                type="range"
+                min="6"
+                max="120"
+                step="1"
+                value="38"
+              />
+            </label>
+
+            <label class="control-row">
+              <span>Stroke gap</span>
+              <output id="strokeGapValue">0.08s</output>
+              <input
+                id="strokeGap"
+                type="range"
+                min="0"
+                max="0.8"
+                step="0.01"
+                value="0.08"
+              />
+            </label>
+
+            <div class="button-stack">
+              <button id="downloadMask" type="button">
+                Download reveal SVG
+              </button>
+              <button id="downloadArtwork" type="button">
+                Download ink SVG
+              </button>
+              <button id="downloadJson" type="button">Download JSON</button>
+              <button id="copyMask" type="button">Copy reveal SVG</button>
+            </div>
+
+            <label class="file-row">
+              <span>Load JSON</span>
+              <input
+                id="loadJson"
+                type="file"
+                accept="application/json,.json"
+              />
+            </label>
+          </section>
+        </aside>
+      </section>
+
+      <p id="toast" class="toast" role="status" aria-live="polite"></p>
+    </main>
+
+    <script type="module" src="calligraphy-capture.js"></script>
+  </body>
+</html>
