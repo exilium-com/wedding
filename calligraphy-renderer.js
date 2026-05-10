@@ -147,7 +147,7 @@ function lerp(from, to, progress) {
   return from + (to - from) * progress;
 }
 
-function strokeAnimationDuration(stroke, points, options, durationMultiplier = 1) {
+function strokeAnimationDuration(points, options, durationMultiplier = 1) {
   const firstPoint = points[0];
   const lastPoint = points[points.length - 1];
   const speed = options.playbackSpeed || 3;
@@ -166,12 +166,7 @@ function compileStroke(stroke, options, startTime, durationMultiplier = 1) {
   const points = smoothPoints(stroke.points, options.smoothing);
   if (points.length < 2) return null;
 
-  const duration = strokeAnimationDuration(
-    stroke,
-    points,
-    options,
-    durationMultiplier,
-  );
+  const duration = strokeAnimationDuration(points, options, durationMultiplier);
   const firstCapturedTime = Number(points[0]?.t || 0);
   const lastCapturedTime = Number(points[points.length - 1]?.t || 0);
   const capturedSpan = Math.max(0, lastCapturedTime - firstCapturedTime);
@@ -330,9 +325,11 @@ function createPlayback(canvas, timeline) {
     context.lineCap = "round";
     context.lineJoin = "round";
 
-    timeline.strokes.forEach((stroke) => {
+    for (const stroke of timeline.strokes) {
+      if (currentTime < stroke.startTime) break;
+
       drawStroke(context, stroke, currentTime);
-    });
+    }
     context.restore();
   }
 
