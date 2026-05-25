@@ -1,12 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html
+  lang="en"
+  class="bg-paper bg-top bg-repeat-y bg-[length:100%_auto] [background-image:linear-gradient(rgba(247,234,216,0.6),rgba(247,234,216,0.6)),url('assets/parchment-pressed-flower-sides.png')]"
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Allie & Caio</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="m-0 overflow-hidden bg-paper text-ink site-page">
+  <body
+    class="relative isolate m-0 min-h-screen w-full overflow-hidden overflow-x-clip bg-transparent text-ink"
+  >
     <main
       class="relative z-10 grid h-screen place-items-center overflow-hidden"
     >
@@ -57,9 +62,16 @@
       </div>
     </main>
 
-    <section id="site" class="relative z-0 isolate hidden min-h-screen">
+    <section
+      id="site"
+      class="relative z-0 isolate hidden min-h-screen w-full"
+    >
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 z-0 h-48 bg-gradient-to-b from-paper to-transparent"
+        aria-hidden="true"
+      ></div>
       <nav
-        class="torn-nav sticky top-0 z-20 mx-auto flex w-fit max-w-full flex-nowrap items-start justify-center gap-2 p-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl sm:min-w-[48rem] sm:gap-6 sm:p-8 sm:text-xs"
+        class="sticky top-0 z-20 mx-auto box-border flex w-full max-w-3xl flex-nowrap items-start justify-center gap-2 bg-center bg-no-repeat bg-[length:100%_100%] p-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl [background-image:url('assets/torn-nav-parchment.png')] lg:gap-6 lg:text-xs"
         aria-label="Wedding information"
       >
         <a
@@ -67,7 +79,7 @@
           href="#overview"
         >
           <img
-            class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
+            class="h-12 w-12 shrink-0 object-contain lg:h-16 lg:w-16"
             src="assets/icon-story.png"
           />
           <span class="leading-tight">Overview</span>
@@ -77,7 +89,7 @@
           href="#travel"
         >
           <img
-            class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
+            class="h-12 w-12 shrink-0 object-contain lg:h-16 lg:w-16"
             src="assets/icon-details.png"
           />
           <span class="leading-tight">Travel</span>
@@ -87,7 +99,7 @@
           href="#schedule"
         >
           <img
-            class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
+            class="h-12 w-12 shrink-0 object-contain lg:h-16 lg:w-16"
             src="assets/icon-schedule.png"
           />
           <span class="leading-tight">Schedule</span>
@@ -97,7 +109,7 @@
           href="#details"
         >
           <img
-            class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
+            class="h-12 w-12 shrink-0 object-contain lg:h-16 lg:w-16"
             src="assets/icon-rsvp.png"
           />
           <span class="leading-tight">Details</span>
@@ -107,7 +119,7 @@
           href="#bay-area"
         >
           <img
-            class="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
+            class="h-12 w-12 shrink-0 object-contain lg:h-16 lg:w-16"
             src="assets/icon-story.png"
           />
           <span class="leading-tight">Bay Area</span>
@@ -157,14 +169,14 @@
             </a>
           </h3>
         </section>
-        <section id="travel" class="site-section relative grid gap-20 py-20">
-          <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Travel</h2>
+        <section id="travel" class="site-section relative">
+          <h2 class="script mb-8 mt-20 text-6xl md:text-8xl">Travel</h2>
           <div class="grid items-center gap-10 md:grid-cols-2">
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
                 src="assets/logistics-mobile.png"
-                alt="Watercolor garden path, car, transit, and flowers"
+                alt="Watercolor orange rose and trumpet flowers"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
@@ -200,7 +212,7 @@
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
               src="assets/logistics.png"
-              alt="Watercolor garden path, car, transit, and flowers"
+              alt="Watercolor orange rose and trumpet flowers"
             />
           </div>
 
@@ -208,13 +220,13 @@
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
               src="assets/lodging.png"
-              alt="Watercolor hotel key, suitcase, map, and flowers"
+              alt="Watercolor orchids and passionflowers"
             />
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
                 src="assets/lodging-mobile.png"
-                alt="Watercolor hotel key, suitcase, map, and flowers"
+                alt="Watercolor orchids and passionflowers"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
@@ -249,76 +261,85 @@
           </div>
         </section>
 
-        <section
-          id="schedule"
-          class="site-section relative grid items-center gap-10 py-20 md:grid-cols-2"
-        >
-          <div>
+        <section id="schedule" class="site-section relative">
+          <div class="grid items-center md:grid-cols-2">
+            <div>
+              <h2 class="script mb-8 mt-20 text-6xl md:text-8xl">Schedule</h2>
+              <img
+                class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
+                src="assets/schedule-mobile.png"
+                alt="Watercolor sunflowers and leaves"
+              />
+              <p>
+                All events will be held at the University of California
+                Botanical Garden at Berkeley.
+              </p>
+              <table class="mx-auto text-left">
+                <tbody>
+                  <tr>
+                    <th
+                      class="whitespace-nowrap pr-6 text-right align-baseline"
+                    >
+                      5:00 pm
+                    </th>
+                    <td>guests may enter the Redwood Grove</td>
+                  </tr>
+                  <tr>
+                    <th
+                      class="whitespace-nowrap pr-6 text-right align-baseline"
+                    >
+                      5:30 pm
+                    </th>
+                    <td>Ceremony Start in the Redwood Grove</td>
+                  </tr>
+                  <tr>
+                    <th
+                      class="whitespace-nowrap pr-6 text-right align-baseline"
+                    >
+                      6:00 pm
+                    </th>
+                    <td>reception begins in Julia Morgan Hall</td>
+                  </tr>
+                  <tr>
+                    <th
+                      class="whitespace-nowrap pr-6 text-right align-baseline"
+                    >
+                      8:23 pm
+                    </th>
+                    <td>sunset! (the Hall deck faces West toward the Bay!)</td>
+                  </tr>
+                  <tr>
+                    <th
+                      class="whitespace-nowrap pr-6 text-right align-baseline"
+                    >
+                      11:00 pm
+                    </th>
+                    <td>reception ends in Julia Morgan Hall</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <img
-              class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
-              src="assets/schedule-mobile.png"
-              alt="Watercolor pocket watch with redwood leaves and flowers"
+              class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
+              src="assets/schedule.png"
+              alt="Watercolor sunflowers and leaves"
             />
-            <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Schedule</h2>
-            <p>
-              All events will be held at the University of California Botanical
-              Garden at Berkeley.
-            </p>
-            <table class="mx-auto text-left">
-              <tbody>
-                <tr>
-                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
-                    5:00 pm
-                  </th>
-                  <td>guests may enter the Redwood Grove</td>
-                </tr>
-                <tr>
-                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
-                    5:30 pm
-                  </th>
-                  <td>Ceremony Start in the Redwood Grove</td>
-                </tr>
-                <tr>
-                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
-                    6:00 pm
-                  </th>
-                  <td>reception begins in Julia Morgan Hall</td>
-                </tr>
-                <tr>
-                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
-                    8:23 pm
-                  </th>
-                  <td>sunset! (the Hall deck faces West toward the Bay!)</td>
-                </tr>
-                <tr>
-                  <th class="whitespace-nowrap pr-6 text-right align-baseline">
-                    11:00 pm
-                  </th>
-                  <td>reception ends in Julia Morgan Hall</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
-          <img
-            class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
-            src="assets/schedule.png"
-            alt="Watercolor pocket watch with redwood leaves and flowers"
-          />
         </section>
 
-        <section id="details" class="site-section relative grid gap-20 py-20">
-          <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Details</h2>
+        <section id="details" class="site-section relative">
+          <h2 class="script mb-8 mt-20 text-6xl md:text-8xl">Details</h2>
           <div class="grid items-center gap-10 md:grid-cols-2">
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
               src="assets/gifts-attire.png"
-              alt="Watercolor gift, attire ribbon, shawl, and flowers"
+              alt="Watercolor roses and orchids"
             />
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
                 src="assets/gifts-attire-mobile.png"
-                alt="Watercolor gift, attire ribbon, shawl, and flowers"
+                alt="Watercolor roses and orchids"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
@@ -349,7 +370,7 @@
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
                 src="assets/weather-mobile.png"
-                alt="Watercolor shawl, breeze, sunshine, and flowers"
+                alt="Watercolor hydrangeas and orchids"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
@@ -369,20 +390,25 @@
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
               src="assets/weather.png"
-              alt="Watercolor shawl, breeze, sunshine, and flowers"
+              alt="Watercolor hydrangeas and orchids"
             />
           </div>
         </section>
 
-        <section id="bay-area" class="site-section relative grid gap-20 py-20">
+        <section id="bay-area" class="site-section relative">
           <div class="grid items-center gap-10 md:grid-cols-2">
             <div>
+              <h2 class="script mb-8 mt-20 text-6xl md:text-8xl">Bay Area</h2>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
                 src="assets/bay-area-mobile.png"
-                alt="Watercolor Bay Area landscape with coastal and redwood details"
+                alt="Watercolor lantana and bougainvillea flowers"
               />
-              <h2 class="script mb-8 mt-0 text-6xl md:text-8xl">Bay Area</h2>
+              <h3
+                class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"
+              >
+                Things to do
+              </h3>
               <p>
                 If you're traveling from out-of-town, there is so much to do
                 here in the Bay Area while you're visiting! Here are some
@@ -417,7 +443,7 @@
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
               src="assets/bay-area.png"
-              alt="Watercolor Bay Area landscape with coastal and redwood details"
+              alt="Watercolor lantana and bougainvillea flowers"
             />
           </div>
 
@@ -425,13 +451,13 @@
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain md:block"
               src="assets/garden.png"
-              alt="Watercolor botanical garden map with redwood needles and flowers"
+              alt="Watercolor botanical garden flowers and ferns"
             />
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain md:hidden"
                 src="assets/garden-mobile.png"
-                alt="Watercolor botanical garden map with redwood needles and flowers"
+                alt="Watercolor botanical garden flowers and ferns"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase md:text-2xl tracking-widest"

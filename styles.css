@@ -12,29 +12,6 @@ html {
   font-weight: 400;
 }
 
-.site-page {
-  background:
-    linear-gradient(rgba(247, 234, 216, 0.6), rgba(247, 234, 216, 0.6)),
-    url("assets/parchment-pressed-flower-sides.png") center top / 100%
-      auto repeat-y,
-    #f7ead8;
-}
-
-.site-page::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 0;
-  height: 12rem;
-  pointer-events: none;
-  background: linear-gradient(to bottom, #f7ead8, transparent);
-}
-
-.torn-nav {
-  background: url("assets/torn-nav-parchment.png") center / 100% 100%
-    no-repeat;
-}
-
 .letter-calligraphy {
   position: absolute;
   inset: 0;
@@ -130,8 +107,7 @@ html {
   max-width: 75%;
   height: 12rem;
   margin: auto;
-  background: url("assets/section-divider.png") center / contain
-    no-repeat;
+  background: url("assets/section-divider.png") center / contain no-repeat;
 }
 
 @tailwind base;
