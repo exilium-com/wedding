@@ -48,20 +48,72 @@ function normalizeBrush(brush = {}, settings = {}) {
   };
 }
 
-function normalizePoint(point) {
+function normalizeTransform(transform = {}) {
+  const values = transform || {};
+  const dx = Number(values.dx || 0);
+  const dy = Number(values.dy || 0);
+
   return {
-    x: Number(point.x),
-    y: Number(point.y),
+    dx: Number.isFinite(dx) ? dx : 0,
+    dy: Number.isFinite(dy) ? dy : 0,
+  };
+}
+
+function normalizeTransformMapping(mapping) {
+  if (!mapping || !Array.isArray(mapping.strokes)) return null;
+
+  return {
+    strokes: new Set(mapping.strokes.map(String)),
+    transform: normalizeTransform(mapping.transform),
+  };
+}
+
+function normalizeTransformMappings(payload = {}) {
+  const mappings = [];
+
+  if (Array.isArray(payload.transforms)) {
+    mappings.push(...payload.transforms);
+  }
+
+  if (Array.isArray(payload.transform)) {
+    mappings.push(...payload.transform);
+  } else if (Array.isArray(payload.transform?.strokes)) {
+    mappings.push(payload.transform);
+  }
+
+  return mappings.map(normalizeTransformMapping).filter(Boolean);
+}
+
+function transformForStroke(stroke, transformMappings) {
+  const strokeId = String(stroke.id || "");
+  const transform = normalizeTransform();
+
+  for (const mapping of transformMappings) {
+    if (!mapping.strokes.has(strokeId)) continue;
+
+    transform.dx += mapping.transform.dx;
+    transform.dy += mapping.transform.dy;
+  }
+
+  return transform;
+}
+
+function normalizePoint(point, transform) {
+  return {
+    x: Number(point.x) + transform.dx,
+    y: Number(point.y) + transform.dy,
     t: Number(point.t || 0),
     pressure: Number(point.pressure ?? 0.08),
   };
 }
 
-function normalizeStroke(stroke, settings) {
+function normalizeStroke(stroke, settings, transform) {
   return {
     id: stroke.id || globalThis.crypto?.randomUUID?.() || String(Math.random()),
     brush: normalizeBrush(stroke.brush, settings),
-    points: (stroke.points || []).map(normalizePoint),
+    points: (stroke.points || []).map((point) =>
+      normalizePoint(point, transform),
+    ),
   };
 }
 
@@ -69,8 +121,15 @@ function normalizeCapture(payload) {
   if (!payload || !Array.isArray(payload.strokes)) return null;
 
   const settings = payload.settings || {};
+  const transformMappings = normalizeTransformMappings(payload);
   const strokes = payload.strokes
-    .map((stroke) => normalizeStroke(stroke, settings))
+    .map((stroke) =>
+      normalizeStroke(
+        stroke,
+        settings,
+        transformForStroke(stroke, transformMappings),
+      ),
+    )
     .filter((stroke) => stroke.points.length > 1);
 
   if (!strokes.length) return null;

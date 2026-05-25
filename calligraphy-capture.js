@@ -422,6 +422,56 @@ function buildPayload() {
   };
 }
 
+function normalizeImportTransform(transform = {}) {
+  const values = transform || {};
+  const dx = Number(values.dx || 0);
+  const dy = Number(values.dy || 0);
+
+  return {
+    dx: Number.isFinite(dx) ? dx : 0,
+    dy: Number.isFinite(dy) ? dy : 0,
+  };
+}
+
+function normalizeImportTransformMapping(mapping) {
+  if (!mapping || !Array.isArray(mapping.strokes)) return null;
+
+  return {
+    strokes: new Set(mapping.strokes.map(String)),
+    transform: normalizeImportTransform(mapping.transform),
+  };
+}
+
+function normalizeImportTransformMappings(payload = {}) {
+  const mappings = [];
+
+  if (Array.isArray(payload.transforms)) {
+    mappings.push(...payload.transforms);
+  }
+
+  if (Array.isArray(payload.transform)) {
+    mappings.push(...payload.transform);
+  } else if (Array.isArray(payload.transform?.strokes)) {
+    mappings.push(payload.transform);
+  }
+
+  return mappings.map(normalizeImportTransformMapping).filter(Boolean);
+}
+
+function importTransformForStroke(stroke, transformMappings) {
+  const strokeId = String(stroke.id || "");
+  const transform = normalizeImportTransform();
+
+  for (const mapping of transformMappings) {
+    if (!mapping.strokes.has(strokeId)) continue;
+
+    transform.dx += mapping.transform.dx;
+    transform.dy += mapping.transform.dy;
+  }
+
+  return transform;
+}
+
 function saveLocalState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(buildPayload()));
 }
@@ -758,17 +808,22 @@ function importPayload(payload, options = {}) {
   }
 
   const settings = getSettings();
-  state.strokes = payload.strokes.map((stroke) => ({
-    id: stroke.id || window.crypto?.randomUUID?.() || String(Date.now()),
-    brush: normalizeBrush(stroke.brush, settings),
-    points: (stroke.points || []).map((point) => ({
-      x: Number(point.x),
-      y: Number(point.y),
-      t: Number(point.t || 0),
-      pressure: Number(point.pressure || 0.08),
-      source: point.source || "imported",
-    })),
-  }));
+  const transformMappings = normalizeImportTransformMappings(payload);
+  state.strokes = payload.strokes.map((stroke) => {
+    const transform = importTransformForStroke(stroke, transformMappings);
+
+    return {
+      id: stroke.id || window.crypto?.randomUUID?.() || String(Date.now()),
+      brush: normalizeBrush(stroke.brush, settings),
+      points: (stroke.points || []).map((point) => ({
+        x: Number(point.x) + transform.dx,
+        y: Number(point.y) + transform.dy,
+        t: Number(point.t || 0),
+        pressure: Number(point.pressure || 0.08),
+        source: point.source || "imported",
+      })),
+    };
+  });
 
   stopAnimationPreview();
   renderAllStrokes();
