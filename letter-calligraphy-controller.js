@@ -2,7 +2,7 @@ import {
   loadStoredCalligraphyCapture,
   renderCalligraphyCapture,
 } from "./calligraphy-renderer.js";
-import defaultLetterCalligraphyCapture from "./assets/letter-calligraphy-strokes-6.json";
+import defaultLetterCalligraphyCapture from "./assets/letter-calligraphy-strokes-7.json";
 
 const LETTER_OPTION_KEY = "weddingLetterCalligraphyOption";
 const DEFAULT_OPTION_LABEL = "strokes-6";
