@@ -33,10 +33,12 @@ html {
 }
 
 .ink-redwood.is-active .redwood-splash {
+  opacity: 1;
   animation: redwood-ink 3s steps(39) forwards;
 }
 
 .redwood-splash {
+  opacity: 0;
   mask-image:
     url("assets/ink-transition-sprite-alpha-mask.png"),
     linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
