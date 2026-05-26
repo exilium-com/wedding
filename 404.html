@@ -7,8 +7,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Allie & Caio</title>
-    <script type="module" crossorigin src="/assets/index-DWfEJ6__.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-nmPSW41M.css">
+    <script type="module" crossorigin src="/assets/index-B9mZE5wt.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Du7kMpgj.css">
   </head>
   <body
     class="relative isolate m-0 min-h-screen w-full overflow-hidden overflow-x-clip bg-transparent text-ink"
@@ -61,7 +61,7 @@
 
         <img
           class="seal-art pointer-events-none absolute inset-0 z-40 h-full w-full"
-          src="/assets/envelope_seal-CS40tcqy.webp"
+          data-src="assets/envelope_seal.webp"
           decoding="async"
         />
 
@@ -78,7 +78,7 @@
         aria-label="Wedding information"
       >
         <a
-          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
+          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline transition-transform duration-200 ease-out hover:-translate-y-1 focus-visible:-translate-y-1 motion-reduce:transition-none visited:text-ink"
           href="#overview"
         >
           <img
@@ -89,7 +89,7 @@
           <span class="leading-tight">Overview</span>
         </a>
         <a
-          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
+          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline transition-transform duration-200 ease-out hover:-translate-y-1 focus-visible:-translate-y-1 motion-reduce:transition-none visited:text-ink"
           href="#travel"
         >
           <img
@@ -100,7 +100,7 @@
           <span class="leading-tight">Travel</span>
         </a>
         <a
-          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
+          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline transition-transform duration-200 ease-out hover:-translate-y-1 focus-visible:-translate-y-1 motion-reduce:transition-none visited:text-ink"
           href="#schedule"
         >
           <img
@@ -111,7 +111,7 @@
           <span class="leading-tight">Schedule</span>
         </a>
         <a
-          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
+          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline transition-transform duration-200 ease-out hover:-translate-y-1 focus-visible:-translate-y-1 motion-reduce:transition-none visited:text-ink"
           href="#details"
         >
           <img
@@ -122,7 +122,7 @@
           <span class="leading-tight">Details</span>
         </a>
         <a
-          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
+          class="grid min-w-0 justify-items-center gap-2 text-ink no-underline transition-transform duration-200 ease-out hover:-translate-y-1 focus-visible:-translate-y-1 motion-reduce:transition-none visited:text-ink"
           href="#bay-area"
         >
           <img
@@ -139,11 +139,15 @@
       >
         <section id="overview" class="py-20">
           <a
-            class="mx-auto mb-12 mt-0 block aspect-[470/311] w-52 bg-contain bg-center bg-no-repeat transition-transform [background-image:url('assets/rsvp-button.webp')] xl:w-64"
+            class="group relative mx-auto mb-12 mt-0 block h-[138px] w-52 xl:h-[170px] xl:w-64"
             href="https://docs.google.com/forms/d/e/1FAIpQLSf7GT3sovEYj_HnHyGsGpPJj3zds3eHzOv-Pt14V3ZZ4ZL9LQ/viewform?usp=header"
             target="_blank"
             aria-label="RSVP"
           >
+            <span
+              class="absolute inset-0 bg-[length:100%_100%] bg-center bg-no-repeat transition-transform duration-200 ease-out [backface-visibility:hidden] [background-image:url('assets/rsvp-button.webp')] group-hover:-translate-y-1 group-focus-visible:-translate-y-1 motion-reduce:transition-none"
+              aria-hidden="true"
+            ></span>
             <span class="sr-only">RSVP</span>
           </a>
           <h3
