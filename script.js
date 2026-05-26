@@ -9,6 +9,7 @@ const flap = document.querySelector(".flap");
 const letter = document.querySelector(".letter");
 const letterCalligraphy = document.querySelector(".letter-calligraphy");
 const site = document.querySelector("#site");
+const siteNav = document.querySelector(".site-nav");
 const letterMask = document.querySelector(".letter-mask");
 const debugControls = document.querySelector(".debug-controls");
 const resetIntro = document.querySelector(".reset-intro");
@@ -97,6 +98,47 @@ function setupPaintImages() {
   );
 
   paintImages.forEach((image) => observer.observe(image));
+}
+
+function setupAutoHideNav() {
+  const hideClasses = ["-translate-y-full", "opacity-0", "pointer-events-none"];
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  function setHidden(isHidden) {
+    siteNav.classList.toggle(hideClasses[0], isHidden);
+    siteNav.classList.toggle(hideClasses[1], isHidden);
+    siteNav.classList.toggle(hideClasses[2], isHidden);
+  }
+
+  function update() {
+    const currentY = window.scrollY;
+    const delta = currentY - lastY;
+    const nearSiteTop = currentY <= site.offsetTop + 24;
+
+    if (nearSiteTop || delta < -8) {
+      setHidden(false);
+    } else if (delta > 8) {
+      setHidden(true);
+    }
+
+    lastY = currentY;
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+
+      ticking = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+
+  siteNav.addEventListener("focusin", () => setHidden(false));
+  siteNav.addEventListener("pointerenter", () => setHidden(false));
 }
 
 function setLetterTransform() {
@@ -263,6 +305,7 @@ envelope.addEventListener("pointermove", tiltLetter);
 envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
 letterCalligraphyController.prepare();
 setupPaintImages();
+setupAutoHideNav();
 
 if (introSeen) {
   completeIntroState();
