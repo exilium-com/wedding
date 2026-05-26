@@ -104,6 +104,8 @@ function setupAutoHideNav() {
   const hideClasses = ["-translate-y-full", "opacity-0", "pointer-events-none"];
   let lastY = window.scrollY;
   let ticking = false;
+  let keepVisibleTimer;
+  let keepVisibleAfterNavClick = false;
 
   function setHidden(isHidden) {
     siteNav.classList.toggle(hideClasses[0], isHidden);
@@ -111,12 +113,24 @@ function setupAutoHideNav() {
     siteNav.classList.toggle(hideClasses[2], isHidden);
   }
 
+  function keepVisibleBriefly() {
+    keepVisibleAfterNavClick = true;
+    setHidden(false);
+    clearTimeout(keepVisibleTimer);
+    keepVisibleTimer = setTimeout(() => {
+      keepVisibleAfterNavClick = false;
+      lastY = window.scrollY;
+    }, 100);
+  }
+
   function update() {
     const currentY = window.scrollY;
     const delta = currentY - lastY;
     const nearSiteTop = currentY <= site.offsetTop + 24;
 
-    if (nearSiteTop || delta < -8) {
+    if (keepVisibleAfterNavClick) {
+      setHidden(false);
+    } else if (nearSiteTop || delta < -8) {
       setHidden(false);
     } else if (delta > 8) {
       setHidden(true);
@@ -139,6 +153,12 @@ function setupAutoHideNav() {
 
   siteNav.addEventListener("focusin", () => setHidden(false));
   siteNav.addEventListener("pointerenter", () => setHidden(false));
+  siteNav.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href^='#']");
+    if (!link) return;
+
+    keepVisibleBriefly();
+  });
 }
 
 function setLetterTransform() {
