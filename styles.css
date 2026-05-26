@@ -109,7 +109,7 @@ html {
   max-width: 75%;
   height: 12rem;
   margin: auto;
-  background: url("assets/section-divider.png") center / contain no-repeat;
+  background: url("assets/section-divider.webp") center / contain no-repeat;
 }
 
 @tailwind base;

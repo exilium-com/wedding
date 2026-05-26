@@ -1,7 +1,7 @@
 <!doctype html>
-<html
-  lang="en"
-  class="bg-paper bg-top bg-repeat-y bg-[length:100%_auto] [background-image:linear-gradient(rgba(247,234,216,0.6),rgba(247,234,216,0.6)),url('assets/parchment-pressed-flower-sides.png')]"
+  <html
+    lang="en"
+    class="bg-paper bg-top bg-repeat-y bg-[length:100%_auto] [background-image:linear-gradient(rgba(247,234,216,0.6),rgba(247,234,216,0.6)),url('assets/parchment-pressed-flower-sides.webp')]"
 >
   <head>
     <meta charset="utf-8" />
@@ -19,19 +19,20 @@
         <div class="ink-redwood pointer-events-none relative h-full w-full">
           <img
             class="redwood-splash absolute left-1/2 top-0 block h-full max-w-none -translate-x-1/2"
-            src="assets/redwoods.png"
+            src="assets/redwoods.webp"
+            decoding="async"
           />
         </div>
       </div>
 
       <div class="envelope relative z-10 w-[min(60vw,50vh)] drop-shadow-2xl">
-        <img class="block w-full" src="assets/envelope_back.png" />
+        <img class="block w-full" src="assets/envelope_back.webp" decoding="async" />
 
         <div
           class="letter-mask absolute inset-x-[10%] bottom-[5%] z-10 overflow-hidden"
         >
           <div
-            class="letter relative mb-[20%] aspect-[995/1260] translate-y-3/4 bg-contain bg-center bg-no-repeat [background-image:url('assets/letter.png')]"
+            class="letter relative mb-[20%] aspect-[995/1260] translate-y-3/4 bg-contain bg-center bg-no-repeat [background-image:url('assets/letter.webp')]"
           >
             <canvas
               class="letter-calligraphy"
@@ -44,16 +45,19 @@
 
         <img
           class="absolute inset-0 z-20 h-full w-full"
-          src="assets/envelope_front.png"
+          src="assets/envelope_front.webp"
+          decoding="async"
         />
         <img
           class="flap absolute inset-0 -pt-4 z-30 h-full w-full origin-top"
-          src="assets/envelope_flap.png"
+          src="assets/envelope_flap.webp"
+          decoding="async"
         />
 
         <img
           class="seal-art pointer-events-none absolute inset-0 z-40 h-full w-full"
-          src="assets/envelope_seal.png"
+          src="assets/envelope_seal.webp"
+          decoding="async"
         />
 
         <button
@@ -65,7 +69,7 @@
 
     <section id="site" class="relative z-0 isolate hidden min-h-screen w-full">
       <nav
-        class="site-nav sticky top-0 z-20 mx-auto box-border flex w-full max-w-3xl flex-nowrap items-start justify-center gap-2 bg-center bg-no-repeat bg-[length:100%_100%] p-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl transition-[transform,opacity] duration-300 ease-out will-change-transform [background-image:url('assets/torn-nav-parchment.png')] motion-reduce:transition-none xl:gap-6 xl:text-xs"
+        class="site-nav sticky top-0 z-20 mx-auto box-border flex w-full max-w-3xl flex-nowrap items-start justify-center gap-2 bg-center bg-no-repeat bg-[length:100%_100%] p-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl transition-[transform,opacity] duration-300 ease-out will-change-transform [background-image:url('assets/torn-nav-parchment.webp')] motion-reduce:transition-none xl:gap-6 xl:text-xs"
         aria-label="Wedding information"
       >
         <a
@@ -74,7 +78,8 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
-            src="assets/icon-overview.png"
+            src="assets/icon-overview.webp"
+            decoding="async"
           />
           <span class="leading-tight">Overview</span>
         </a>
@@ -84,7 +89,8 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
-            src="assets/icon-travel.png"
+            src="assets/icon-travel.webp"
+            decoding="async"
           />
           <span class="leading-tight">Travel</span>
         </a>
@@ -94,7 +100,8 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
-            src="assets/icon-schedule.png"
+            src="assets/icon-schedule.webp"
+            decoding="async"
           />
           <span class="leading-tight">Schedule</span>
         </a>
@@ -104,7 +111,8 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
-            src="assets/icon-details.png"
+            src="assets/icon-details.webp"
+            decoding="async"
           />
           <span class="leading-tight">Details</span>
         </a>
@@ -114,7 +122,8 @@
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
-            src="assets/icon-bay-area.png"
+            src="assets/icon-bay-area.webp"
+            decoding="async"
           />
           <span class="leading-tight">Bay Area</span>
         </a>
@@ -125,7 +134,7 @@
       >
         <section id="overview" class="py-20">
           <a
-            class="mx-auto mb-12 mt-0 block aspect-[470/311] w-52 bg-contain bg-center bg-no-repeat transition-transform [background-image:url('assets/rsvp-button.png')] xl:w-64"
+            class="mx-auto mb-12 mt-0 block aspect-[470/311] w-52 bg-contain bg-center bg-no-repeat transition-transform [background-image:url('assets/rsvp-button.webp')] xl:w-64"
             href="https://docs.google.com/forms/d/e/1FAIpQLSf7GT3sovEYj_HnHyGsGpPJj3zds3eHzOv-Pt14V3ZZ4ZL9LQ/viewform?usp=header"
             target="_blank"
             aria-label="RSVP"
@@ -167,8 +176,10 @@
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/logistics-mobile.png"
+                src="assets/logistics-mobile.webp"
                 alt="Watercolor orange rose and trumpet flowers"
+                loading="lazy"
+                decoding="async"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase xl:text-2xl tracking-widest"
@@ -203,22 +214,28 @@
             </div>
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/logistics.png"
+              src="assets/logistics.webp"
               alt="Watercolor orange rose and trumpet flowers"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
           <div class="grid items-center gap-10 xl:grid-cols-2">
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/lodging.png"
+              src="assets/lodging.webp"
               alt="Watercolor orchids and passionflowers"
+              loading="lazy"
+              decoding="async"
             />
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/lodging-mobile.png"
+                src="assets/lodging-mobile.webp"
                 alt="Watercolor orchids and passionflowers"
+                loading="lazy"
+                decoding="async"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase xl:text-2xl tracking-widest"
@@ -259,8 +276,10 @@
               <h2 class="script mb-8 mt-20 text-6xl xl:text-8xl">Schedule</h2>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/schedule-mobile.png"
+                src="assets/schedule-mobile.webp"
                 alt="Watercolor sunflowers and leaves"
+                loading="lazy"
+                decoding="async"
               />
               <p>
                 All events will be held at the University of California
@@ -313,8 +332,10 @@
             </div>
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/schedule.png"
+              src="assets/schedule.webp"
               alt="Watercolor sunflowers and leaves"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </section>
@@ -324,14 +345,18 @@
           <div class="grid items-center gap-10 xl:grid-cols-2">
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/gifts-attire.png"
+              src="assets/gifts-attire.webp"
               alt="Watercolor roses and orchids"
+              loading="lazy"
+              decoding="async"
             />
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/gifts-attire-mobile.png"
+                src="assets/gifts-attire-mobile.webp"
                 alt="Watercolor roses and orchids"
+                loading="lazy"
+                decoding="async"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase xl:text-2xl tracking-widest"
@@ -361,8 +386,10 @@
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/weather-mobile.png"
+                src="assets/weather-mobile.webp"
                 alt="Watercolor hydrangeas and orchids"
+                loading="lazy"
+                decoding="async"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase xl:text-2xl tracking-widest"
@@ -381,8 +408,10 @@
             </div>
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/weather.png"
+              src="assets/weather.webp"
               alt="Watercolor hydrangeas and orchids"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </section>
@@ -393,8 +422,10 @@
               <h2 class="script mb-8 mt-20 text-6xl xl:text-8xl">Bay Area</h2>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/bay-area-mobile.png"
+                src="assets/bay-area-mobile.webp"
                 alt="Watercolor lantana and bougainvillea flowers"
+                loading="lazy"
+                decoding="async"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase xl:text-2xl tracking-widest"
@@ -438,22 +469,28 @@
             </div>
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/bay-area.png"
+              src="assets/bay-area.webp"
               alt="Watercolor lantana and bougainvillea flowers"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
           <div class="grid items-center gap-10 xl:grid-cols-2">
             <img
               class="paint-image hidden w-full max-w-md justify-self-center object-contain xl:block"
-              src="assets/garden.png"
+              src="assets/garden.webp"
               alt="Watercolor botanical garden flowers and ferns"
+              loading="lazy"
+              decoding="async"
             />
             <div>
               <img
                 class="paint-image w-full max-w-lg justify-self-center object-contain xl:hidden"
-                src="assets/garden-mobile.png"
+                src="assets/garden-mobile.webp"
                 alt="Watercolor botanical garden flowers and ferns"
+                loading="lazy"
+                decoding="async"
               />
               <h3
                 class="mt-0 text-lg font-bold uppercase xl:text-2xl tracking-widest"
