@@ -41,6 +41,18 @@ letter.style.transformStyle = "preserve-3d";
 sealArt.style.transformOrigin = "center";
 sealArt.style.filter = sealGlow;
 
+function loadSealArt() {
+  const source = sealArt.dataset.src;
+  if (!source || sealArt.getAttribute("src")) return;
+
+  sealArt.src = source;
+}
+
+function removeSeal() {
+  seal.remove();
+  sealArt.remove();
+}
+
 function markIntroSeen() {
   localStorage.setItem(introSeenKey, "true");
 }
@@ -234,7 +246,7 @@ async function openEnvelope() {
       duration: 0.24,
       ease: "easeOut",
       onComplete() {
-        seal.remove();
+        removeSeal();
       },
     },
   );
@@ -309,7 +321,7 @@ function completeIntroState() {
   letterMask.classList.remove("overflow-hidden");
   flap.style.zIndex = "0";
   flap.style.transform = "rotateX(180deg) translateY(-4px)";
-  seal.remove();
+  removeSeal();
   letterCalligraphyController.complete();
   revealSite();
   siteRedwood.classList.add("is-active");
@@ -330,6 +342,7 @@ setupAutoHideNav();
 if (introSeen) {
   completeIntroState();
 } else {
+  loadSealArt();
   seal.addEventListener("pointerenter", () =>
     animateSeal(1.1, sealHoverGlow, 0.2),
   );
