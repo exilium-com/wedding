@@ -32,6 +32,25 @@ html {
   scroll-margin-top: 6rem;
 }
 
+.button-y-lift {
+  touch-action: manipulation;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-y-lift:hover,
+  .button-y-lift:focus-visible,
+  .group:hover > .button-y-lift,
+  .group:focus-visible > .button-y-lift {
+    transform: translateY(-0.25rem);
+  }
+}
+
+.button-y-lift:active {
+  transform: translateY(-0.25rem);
+}
+
 .ink-redwood.is-active .redwood-splash {
   opacity: 1;
   animation: redwood-ink 3s steps(39) forwards;
@@ -93,6 +112,11 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .button-y-lift {
+    transform: none;
+    transition: none;
+  }
+
   .paint-image.is-visible {
     animation: none;
     -webkit-mask-position: right center;
