@@ -147,16 +147,6 @@ function setupAutoHideNav() {
     if (!isHidden) hideNavAfterDelay();
   }
 
-  function keepVisibleBriefly() {
-    keepVisibleAfterNavClick = true;
-    setHidden(false);
-    clearTimeout(keepVisibleTimer);
-    keepVisibleTimer = setTimeout(() => {
-      keepVisibleAfterNavClick = false;
-      lastY = window.scrollY;
-    }, 100);
-  }
-
   function update() {
     const currentY = window.scrollY;
     const delta = currentY - lastY;
@@ -191,7 +181,12 @@ function setupAutoHideNav() {
     const link = event.target.closest("a[href^='#']");
     if (!link) return;
 
-    keepVisibleBriefly();
+    keepVisibleAfterNavClick = true;
+    clearTimeout(keepVisibleTimer);
+    keepVisibleTimer = setTimeout(() => {
+      keepVisibleAfterNavClick = false;
+      lastY = window.scrollY;
+    }, 100);
   });
 }
 
