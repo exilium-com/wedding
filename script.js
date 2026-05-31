@@ -19,12 +19,16 @@ const redwoodSplash = document.querySelector(".redwood-splash");
 const paintImages = document.querySelectorAll(".paint-image");
 
 const introSeenKey = "weddingIntroSeen";
+const navAutoHideDelay = 5000;
+const introAutoOpenDelay = 15000;
 const sealGlow = "drop-shadow(0 0 16px rgba(255, 194, 220, 0.75))";
 const sealHoverGlow = "drop-shadow(0 0 24px rgba(255, 178, 214, 0.95))";
 let opened = false;
+let opening = false;
 let sealAnimation;
 let letterYAnimation;
 let envelopeYAnimation;
+let navHideTimer;
 let letterTiltAnimations = [];
 const introSeen = localStorage.getItem(introSeenKey) === "true";
 const letterTransform = { y: 75, rotateX: 0, rotateY: 0 };
@@ -70,6 +74,7 @@ function revealSite() {
   site.classList.remove("hidden");
   document.body.classList.remove("overflow-hidden");
   debugControls.classList.remove("hidden");
+  hideNavAfterDelay();
 }
 
 function revealRedwood() {
@@ -106,6 +111,26 @@ function setupPaintImages() {
   paintImages.forEach((image) => observer.observe(image));
 }
 
+function navIsSticking() {
+  return (
+    siteNav.getBoundingClientRect().top <= 0 && window.scrollY > site.offsetTop
+  );
+}
+
+function hideNavAfterDelay() {
+  clearTimeout(navHideTimer);
+
+  navHideTimer = setTimeout(() => {
+    if (!navIsSticking()) return;
+
+    siteNav.classList.add(
+      "-translate-y-full",
+      "opacity-0",
+      "pointer-events-none",
+    );
+  }, navAutoHideDelay);
+}
+
 function setupAutoHideNav() {
   const hideClasses = ["-translate-y-full", "opacity-0", "pointer-events-none"];
   let lastY = window.scrollY;
@@ -114,9 +139,12 @@ function setupAutoHideNav() {
   let keepVisibleAfterNavClick = false;
 
   function setHidden(isHidden) {
+    clearTimeout(navHideTimer);
     siteNav.classList.toggle(hideClasses[0], isHidden);
     siteNav.classList.toggle(hideClasses[1], isHidden);
     siteNav.classList.toggle(hideClasses[2], isHidden);
+
+    if (!isHidden) hideNavAfterDelay();
   }
 
   function keepVisibleBriefly() {
@@ -138,7 +166,7 @@ function setupAutoHideNav() {
       setHidden(false);
     } else if (nearSiteTop || delta < -8) {
       setHidden(false);
-    } else if (delta > 8) {
+    } else if (delta > 8 && navIsSticking()) {
       setHidden(true);
     }
 
@@ -229,8 +257,9 @@ function tiltLetter(event) {
 }
 
 async function openEnvelope() {
-  if (opened) return;
+  if (opened || opening) return;
 
+  opening = true;
   seal.disabled = true;
 
   animate(
@@ -305,6 +334,7 @@ async function openEnvelope() {
 
 function completeIntroState() {
   opened = true;
+  opening = false;
   letterTransform.y = 0;
   letterTransform.rotateX = 0;
   letterTransform.rotateY = 0;
@@ -349,4 +379,5 @@ if (introSeen) {
   );
   seal.addEventListener("pointercancel", () => animateSeal(1, sealGlow, 0.2));
   seal.addEventListener("click", openEnvelope);
+  setTimeout(openEnvelope, introAutoOpenDelay);
 }

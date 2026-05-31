@@ -50,7 +50,9 @@
 
 - A real npm/Vite server is acceptable and often better than fighting `file://` module limitations.
 - Keep the app simple; Vite plus static HTML/CSS/JS is enough unless the user explicitly asks for React.
-- This WSL shell may not have Node on PATH by default. Check Codex history/env and use `PATH="$NVM_BIN:$PATH"` when `NVM_BIN` points at the Linux Node install.
+- In Codex shell commands for this repo, `node`/`npm` may be missing because `.zshrc` is not sourced. Do not conclude Node is unavailable until trying `source /home/cdc/.nvm/nvm.sh && nvm use --silent default && <command>` in the same shell command.
+- Current working Node setup, verified May 31, 2026: `source /home/cdc/.nvm/nvm.sh && nvm use --silent default && node --version && npm --version` gives Node `v24.14.0` and npm `11.9.0`.
+- For Vite commands, use the same prefix, e.g. `source /home/cdc/.nvm/nvm.sh && nvm use --silent default && npm run dev -- --host 0.0.0.0`.
 - Bundled Windows Python may have Pillow when Linux Python does not. It can process WSL project files through `\\wsl.localhost\...` paths.
 - Running helper scripts directly from the Windows-side `.codex` path may hit permission issues; copy a helper into the workspace temporarily only if needed, then remove it.
 - Do not run builds unless the user explicitly reverses this instruction. Prefer code inspection for routine checks.
