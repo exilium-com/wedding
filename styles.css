@@ -39,6 +39,7 @@ html {
 }
 
 .button-y-lift {
+  -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition: transform 0.2s ease-out;
   will-change: transform;

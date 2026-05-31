@@ -78,9 +78,10 @@
         class="site-nav sticky top-0 z-20 mx-auto box-border flex w-full max-w-3xl flex-nowrap items-start justify-center gap-2 bg-center bg-no-repeat bg-[length:100%_100%] p-8 text-center font-serif text-[10px] uppercase tracking-widest drop-shadow-2xl transition-[transform,opacity] duration-300 ease-out will-change-transform [background-image:url('assets/torn-nav-parchment.webp')] motion-reduce:transition-none xl:gap-6 xl:text-xs"
         aria-label="Wedding information"
       >
-        <a
-          class="button-y-lift grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
-          href="#overview"
+        <button
+          class="button-y-lift grid min-w-0 cursor-pointer appearance-none justify-items-center gap-2 border-0 bg-transparent p-0 text-ink [font:inherit] [letter-spacing:inherit] [text-transform:inherit]"
+          type="button"
+          data-target="#overview"
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
@@ -88,10 +89,11 @@
             decoding="async"
           />
           <span class="leading-tight">Overview</span>
-        </a>
-        <a
-          class="button-y-lift grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
-          href="#travel"
+        </button>
+        <button
+          class="button-y-lift grid min-w-0 cursor-pointer appearance-none justify-items-center gap-2 border-0 bg-transparent p-0 text-ink [font:inherit] [letter-spacing:inherit] [text-transform:inherit]"
+          type="button"
+          data-target="#travel"
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
@@ -99,10 +101,11 @@
             decoding="async"
           />
           <span class="leading-tight">Travel</span>
-        </a>
-        <a
-          class="button-y-lift grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
-          href="#schedule"
+        </button>
+        <button
+          class="button-y-lift grid min-w-0 cursor-pointer appearance-none justify-items-center gap-2 border-0 bg-transparent p-0 text-ink [font:inherit] [letter-spacing:inherit] [text-transform:inherit]"
+          type="button"
+          data-target="#schedule"
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
@@ -110,10 +113,11 @@
             decoding="async"
           />
           <span class="leading-tight">Schedule</span>
-        </a>
-        <a
-          class="button-y-lift grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
-          href="#details"
+        </button>
+        <button
+          class="button-y-lift grid min-w-0 cursor-pointer appearance-none justify-items-center gap-2 border-0 bg-transparent p-0 text-ink [font:inherit] [letter-spacing:inherit] [text-transform:inherit]"
+          type="button"
+          data-target="#details"
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
@@ -121,10 +125,11 @@
             decoding="async"
           />
           <span class="leading-tight">Details</span>
-        </a>
-        <a
-          class="button-y-lift grid min-w-0 justify-items-center gap-2 text-ink no-underline visited:text-ink"
-          href="#bay-area"
+        </button>
+        <button
+          class="button-y-lift grid min-w-0 cursor-pointer appearance-none justify-items-center gap-2 border-0 bg-transparent p-0 text-ink [font:inherit] [letter-spacing:inherit] [text-transform:inherit]"
+          type="button"
+          data-target="#bay-area"
         >
           <img
             class="h-12 w-12 shrink-0 object-contain xl:size-16"
@@ -132,7 +137,7 @@
             decoding="async"
           />
           <span class="leading-tight">Bay Area</span>
-        </a>
+        </button>
       </nav>
 
       <div

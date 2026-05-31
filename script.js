@@ -176,12 +176,11 @@ function setupAutoHideNav() {
   siteNav.addEventListener("pointerenter", show);
   siteNav.addEventListener("pointerleave", scheduleHide);
   siteNav.addEventListener("click", (event) => {
-    const link = event.target.closest("a[href^='#']");
-    const target = link && document.querySelector(link.hash);
+    const trigger = event.target.closest("[data-target]");
+    const targetId = trigger?.dataset.target;
+    const target = targetId && document.querySelector(targetId);
 
     if (!target) return;
-
-    event.preventDefault();
 
     const targetStyle = getComputedStyle(target);
     const scrollMarginTop = parseFloat(targetStyle.scrollMarginTop) || 0;
@@ -189,7 +188,7 @@ function setupAutoHideNav() {
       target.getBoundingClientRect().top + window.scrollY - scrollMarginTop;
 
     scrollTo(0, targetY);
-    history.pushState(null, "", link.hash);
+    history.pushState(null, "", targetId);
     lastY = window.scrollY;
     show();
   });
