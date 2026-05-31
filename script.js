@@ -113,6 +113,8 @@ function setupAutoHideNav() {
   let hideTimer;
   let lastY = window.scrollY;
   let ticking = false;
+  let navScrollAnimation;
+  let navIsScrolling = false;
 
   function isSticky() {
     return (
@@ -144,6 +146,12 @@ function setupAutoHideNav() {
   function update() {
     const currentY = window.scrollY;
     const delta = currentY - lastY;
+
+    if (navIsScrolling) {
+      lastY = currentY;
+      ticking = false;
+      return;
+    }
 
     if (!isSticky()) {
       clearTimeout(hideTimer);
@@ -187,10 +195,24 @@ function setupAutoHideNav() {
     const targetY =
       target.getBoundingClientRect().top + window.scrollY - scrollMarginTop;
 
-    scrollTo(0, targetY);
+    navScrollAnimation?.stop();
+    navIsScrolling = true;
+    clearTimeout(hideTimer);
+    setHidden(false);
     history.pushState(null, "", targetId);
-    lastY = window.scrollY;
-    show();
+
+    navScrollAnimation = animate(window.scrollY, targetY, {
+      duration: 0.9,
+      ease: "easeOut",
+      onUpdate(value) {
+        scrollTo(0, value);
+      },
+      onComplete() {
+        navIsScrolling = false;
+        lastY = window.scrollY;
+        show();
+      },
+    });
   });
 
   scheduleHide();
