@@ -153,8 +153,12 @@ function setupAutoHideNav() {
     const nearSiteTop = currentY <= site.offsetTop + 24;
 
     if (keepVisibleAfterNavClick) {
-      setHidden(false);
-    } else if (nearSiteTop || delta < -8) {
+      lastY = currentY;
+      ticking = false;
+      return;
+    }
+
+    if (nearSiteTop || delta < -8) {
       setHidden(false);
     } else if (delta > 8 && navIsSticking()) {
       setHidden(true);
