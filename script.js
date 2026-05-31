@@ -28,7 +28,6 @@ let opening = false;
 let sealAnimation;
 let letterYAnimation;
 let envelopeYAnimation;
-let navHideTimer;
 let letterTiltAnimations = [];
 const introSeen = localStorage.getItem(introSeenKey) === "true";
 const letterTransform = { y: 75, rotateX: 0, rotateY: 0 };
@@ -74,7 +73,6 @@ function revealSite() {
   site.classList.remove("hidden");
   document.body.classList.remove("overflow-hidden");
   debugControls.classList.remove("hidden");
-  hideNavAfterDelay();
 }
 
 function revealRedwood() {
@@ -111,57 +109,52 @@ function setupPaintImages() {
   paintImages.forEach((image) => observer.observe(image));
 }
 
-function navIsSticking() {
-  return (
-    siteNav.getBoundingClientRect().top <= 0 && window.scrollY > site.offsetTop
-  );
-}
-
-function hideNavAfterDelay() {
-  clearTimeout(navHideTimer);
-
-  navHideTimer = setTimeout(() => {
-    if (!navIsSticking()) return;
-
-    siteNav.classList.add(
-      "-translate-y-full",
-      "opacity-0",
-      "pointer-events-none",
-    );
-  }, navAutoHideDelay);
-}
-
 function setupAutoHideNav() {
-  const hideClasses = ["-translate-y-full", "opacity-0", "pointer-events-none"];
+  let hideTimer;
   let lastY = window.scrollY;
   let ticking = false;
-  let keepVisibleTimer;
-  let keepVisibleAfterNavClick = false;
+
+  function isSticky() {
+    return (
+      siteNav.getBoundingClientRect().top <= 0 &&
+      window.scrollY > site.offsetTop
+    );
+  }
 
   function setHidden(isHidden) {
-    clearTimeout(navHideTimer);
-    siteNav.classList.toggle(hideClasses[0], isHidden);
-    siteNav.classList.toggle(hideClasses[1], isHidden);
-    siteNav.classList.toggle(hideClasses[2], isHidden);
+    siteNav.classList.toggle("is-hidden", isHidden);
+  }
 
-    if (!isHidden) hideNavAfterDelay();
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+
+    if (!isSticky()) {
+      setHidden(false);
+      return;
+    }
+
+    hideTimer = setTimeout(() => setHidden(true), navAutoHideDelay);
+  }
+
+  function show() {
+    setHidden(false);
+    scheduleHide();
   }
 
   function update() {
     const currentY = window.scrollY;
     const delta = currentY - lastY;
-    const nearSiteTop = currentY <= site.offsetTop + 24;
 
-    if (keepVisibleAfterNavClick) {
-      lastY = currentY;
-      ticking = false;
-      return;
-    }
-
-    if (nearSiteTop || delta < -8) {
+    if (!isSticky()) {
+      clearTimeout(hideTimer);
       setHidden(false);
-    } else if (delta > 8 && navIsSticking()) {
+    } else if (delta < -8) {
+      show();
+    } else if (delta > 8) {
+      clearTimeout(hideTimer);
       setHidden(true);
+    } else {
+      scheduleHide();
     }
 
     lastY = currentY;
@@ -179,19 +172,29 @@ function setupAutoHideNav() {
     { passive: true },
   );
 
-  siteNav.addEventListener("focusin", () => setHidden(false));
-  siteNav.addEventListener("pointerenter", () => setHidden(false));
+  siteNav.addEventListener("focusin", show);
+  siteNav.addEventListener("pointerenter", show);
+  siteNav.addEventListener("pointerleave", scheduleHide);
   siteNav.addEventListener("click", (event) => {
     const link = event.target.closest("a[href^='#']");
-    if (!link) return;
+    const target = link && document.querySelector(link.hash);
 
-    keepVisibleAfterNavClick = true;
-    clearTimeout(keepVisibleTimer);
-    keepVisibleTimer = setTimeout(() => {
-      keepVisibleAfterNavClick = false;
-      lastY = window.scrollY;
-    }, 100);
+    if (!target) return;
+
+    event.preventDefault();
+
+    const targetStyle = getComputedStyle(target);
+    const scrollMarginTop = parseFloat(targetStyle.scrollMarginTop) || 0;
+    const targetY =
+      target.getBoundingClientRect().top + window.scrollY - scrollMarginTop;
+
+    scrollTo(0, targetY);
+    history.pushState(null, "", link.hash);
+    lastY = window.scrollY;
+    show();
   });
+
+  scheduleHide();
 }
 
 function setLetterTransform() {

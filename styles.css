@@ -32,6 +32,12 @@ html {
   scroll-margin-top: 6rem;
 }
 
+.site-nav.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
 .button-y-lift {
   touch-action: manipulation;
   transition: transform 0.2s ease-out;
