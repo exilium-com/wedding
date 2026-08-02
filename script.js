@@ -33,6 +33,11 @@ const introSeen = localStorage.getItem(introSeenKey) === "true";
 const letterTransform = { y: 75, rotateX: 0, rotateY: 0 };
 const envelopeTransform = { baseY: 0, bobY: 0 };
 const scrollWatch = createScrollInterruptionWatch();
+
+if (introSeen && "scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
 const letterCalligraphyController = createLetterCalligraphyController({
   canvas: letterCalligraphy,
   nextButton: nextLetterOption,
@@ -65,6 +70,9 @@ function scrollToSiteUnlessInterrupted() {
     ease: "easeOut",
     onUpdate(value) {
       scrollTo(0, value);
+    },
+    onComplete() {
+      navAutoHide.sync();
     },
   });
 }
@@ -143,6 +151,13 @@ function setupAutoHideNav() {
     scheduleHide();
   }
 
+  function sync() {
+    clearTimeout(hideTimer);
+    lastY = window.scrollY;
+    setHidden(false);
+    scheduleHide();
+  }
+
   function update() {
     const currentY = window.scrollY;
     const delta = currentY - lastY;
@@ -216,6 +231,8 @@ function setupAutoHideNav() {
   });
 
   scheduleHide();
+
+  return { sync };
 }
 
 function setLetterTransform() {
@@ -372,7 +389,8 @@ function completeIntroState() {
   letterCalligraphyController.complete();
   revealSite();
   siteRedwood.classList.add("is-active");
-  requestAnimationFrame(() => scrollTo(0, site.offsetTop));
+  scrollTo(0, site.offsetTop);
+  navAutoHide.sync();
 }
 
 resetIntro.addEventListener("click", () => {
@@ -384,7 +402,7 @@ envelope.addEventListener("pointermove", tiltLetter);
 envelope.addEventListener("pointerleave", () => animateLetterTilt(0, 0, 2));
 letterCalligraphyController.prepare();
 setupPaintImages();
-setupAutoHideNav();
+const navAutoHide = setupAutoHideNav();
 
 if (introSeen) {
   completeIntroState();
@@ -404,3 +422,10 @@ if (introSeen) {
   seal.addEventListener("click", openEnvelope);
   setTimeout(openEnvelope, introAutoOpenDelay);
 }
+
+window.addEventListener("pageshow", () => {
+  if (!introSeen) return;
+
+  scrollTo(0, site.offsetTop);
+  navAutoHide.sync();
+});
